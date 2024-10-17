@@ -84,31 +84,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="service.html" class="nav-item nav-link">Services</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Blog</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                            <a href="detail.html" class="dropdown-item">Blog Detail</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="price.html" class="dropdown-item">Pricing Plan</a>
-                            <a href="feature.html" class="dropdown-item">Our features</a>
-                            <a href="team.html" class="dropdown-item">Team Members</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="quote.html" class="dropdown-item">Free Quote</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <a href="#about" class="nav-item nav-link">About</a>
+                    <a href="#services" class="nav-item nav-link">Services</a>
+                    <a href="#team" class="nav-item nav-link">Our Team</a>
+                    <a class="nav-item nav-link">Signup</a>
                 </div>
-                <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal"
-                    data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-                <a href="" class="btn btn-primary py-2 px-4 ms-3">Login</a>
+                <a data-bs-target="#loginModal" data-bs-toggle="modal" class="btn btn-primary py-2 px-4 ms-3">Login</a>
             </div>
         </nav>
 
@@ -119,8 +101,8 @@
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital
-                                Solution</h1>
+                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Track Vending Sales Effortlessly,
+                                Anytime, Anywhere</h1>
                             <a href="quote.html"
                                 class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free Quote</a>
                             <a href=""
@@ -133,8 +115,8 @@
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Creative & Innovative Digital
-                                Solution</h1>
+                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Maximize Profits with Smart
+                                Vending Insights</h1>
                             <a href="quote.html"
                                 class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Free Quote</a>
                             <a href=""
@@ -229,25 +211,24 @@
 
 
     <!-- About Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="about">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-7">
                     <div class="section-title position-relative pb-3 mb-5">
                         <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
-                        <h1 class="mb-0">The Best IT Solution With 10 Years of Experience</h1>
+                        <h1 class="mb-0">Empowering Vending Success with Smarter Sales Tracking</h1>
                     </div>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                        amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
-                        clita duo justo et tempor eirmod magna dolore erat amet</p>
+                    <p class="mb-4">At <b>Vendora</b>, we revolutionize vending machine management with an intuitive
+                        platform that provides real-time sales insights and inventory control. Our mission is to help
+                        you streamline operations, boost profitability, and unlock growth potential with data-driven
+                        solutions.</p>
                     <div class="row g-0 mb-3">
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Award Winning</h5>
                             <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Professional Staff</h5>
                         </div>
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
                             <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>24/7 Support</h5>
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Fair Prices</h5>
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
@@ -275,72 +256,9 @@
     <!-- About End -->
 
 
-    <!-- Features Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Why Choose Us</h5>
-                <h1 class="mb-0">We Are Here to Grow Your Business Exponentially</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-4">
-                    <div class="row g-5">
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
-                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
-                                style="width: 60px; height: 60px;">
-                                <i class="fa fa-cubes text-white"></i>
-                            </div>
-                            <h4>Best In Industry</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor
-                            </p>
-                        </div>
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
-                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
-                                style="width: 60px; height: 60px;">
-                                <i class="fa fa-award text-white"></i>
-                            </div>
-                            <h4>Award Winning</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.1s"
-                            src="img/feature.jpg" style="object-fit: cover;">
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="row g-5">
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
-                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
-                                style="width: 60px; height: 60px;">
-                                <i class="fa fa-users-cog text-white"></i>
-                            </div>
-                            <h4>Professional Staff</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor
-                            </p>
-                        </div>
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.8s">
-                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3"
-                                style="width: 60px; height: 60px;">
-                                <i class="fa fa-phone-alt text-white"></i>
-                            </div>
-                            <h4>24/7 Support</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Features Start -->
-
 
     <!-- Service Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="services">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Our Services</h5>
@@ -432,230 +350,8 @@
     <!-- Service End -->
 
 
-    <!-- Pricing Plan Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Pricing Plans</h5>
-                <h1 class="mb-0">We are Offering Competitive Prices for Our Clients</h1>
-            </div>
-            <div class="row g-0">
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
-                    <div class="bg-light rounded">
-                        <div class="border-bottom py-4 px-5 mb-4">
-                            <h4 class="text-primary mb-1">Basic Plan</h4>
-                            <small class="text-uppercase">For Small Size Business</small>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <h1 class="display-5 mb-3">
-                                <small class="align-top"
-                                    style="font-size: 22px; line-height: 45px;">$</small>49.00<small
-                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Month</small>
-                            </h1>
-                            <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i
-                                    class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5</span><i
-                                    class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Responsive Layout</span><i
-                                    class="fa fa-times text-danger pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-2"><span>Cross-browser Support</span><i
-                                    class="fa fa-times text-danger pt-1"></i></div>
-                            <a href="" class="btn btn-primary py-2 px-4 mt-4">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
-                        <div class="border-bottom py-4 px-5 mb-4">
-                            <h4 class="text-primary mb-1">Standard Plan</h4>
-                            <small class="text-uppercase">For Medium Size Business</small>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <h1 class="display-5 mb-3">
-                                <small class="align-top"
-                                    style="font-size: 22px; line-height: 45px;">$</small>99.00<small
-                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Month</small>
-                            </h1>
-                            <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i
-                                    class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5</span><i
-                                    class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Responsive Layout</span><i
-                                    class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-2"><span>Cross-browser Support</span><i
-                                    class="fa fa-times text-danger pt-1"></i></div>
-                            <a href="" class="btn btn-primary py-2 px-4 mt-4">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
-                    <div class="bg-light rounded">
-                        <div class="border-bottom py-4 px-5 mb-4">
-                            <h4 class="text-primary mb-1">Advanced Plan</h4>
-                            <small class="text-uppercase">For Large Size Business</small>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <h1 class="display-5 mb-3">
-                                <small class="align-top"
-                                    style="font-size: 22px; line-height: 45px;">$</small>149.00<small
-                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Month</small>
-                            </h1>
-                            <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i
-                                    class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5</span><i
-                                    class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Responsive Layout</span><i
-                                    class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-2"><span>Cross-browser Support</span><i
-                                    class="fa fa-check text-primary pt-1"></i></div>
-                            <a href="" class="btn btn-primary py-2 px-4 mt-4">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Pricing Plan End -->
-
-
-    <!-- Quote Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-7">
-                    <div class="section-title position-relative pb-3 mb-5">
-                        <h5 class="fw-bold text-primary text-uppercase">Request A Quote</h5>
-                        <h1 class="mb-0">Need A Free Quote? Please Feel Free to Contact Us</h1>
-                    </div>
-                    <div class="row gx-3">
-                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                            <h5 class="mb-4"><i class="fa fa-reply text-primary me-3"></i>Reply within 24 hours</h5>
-                        </div>
-                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
-                            <h5 class="mb-4"><i class="fa fa-phone-alt text-primary me-3"></i>24 hrs telephone
-                                support</h5>
-                        </div>
-                    </div>
-                    <p class="mb-4">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea
-                        et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero
-                        ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore
-                        sanctus sed et. Takimata takimata sanctus sed.</p>
-                    <div class="d-flex align-items-center mt-2 wow zoomIn" data-wow-delay="0.6s">
-                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
-                            style="width: 60px; height: 60px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="mb-2">Call to ask any question</h5>
-                            <h4 class="text-primary mb-0">+012 345 6789</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="bg-primary rounded h-100 d-flex align-items-center p-5 wow zoomIn"
-                        data-wow-delay="0.9s">
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-xl-12">
-                                    <input type="text" class="form-control bg-light border-0"
-                                        placeholder="Your Name" style="height: 55px;">
-                                </div>
-                                <div class="col-12">
-                                    <input type="email" class="form-control bg-light border-0"
-                                        placeholder="Your Email" style="height: 55px;">
-                                </div>
-                                <div class="col-12">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <option selected>Select A Service</option>
-                                        <option value="1">Service 1</option>
-                                        <option value="2">Service 2</option>
-                                        <option value="3">Service 3</option>
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <textarea class="form-control bg-light border-0" rows="3" placeholder="Message"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Request A Quote</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Quote End -->
-
-
-    <!-- Testimonial Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-4 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Testimonial</h5>
-                <h1 class="mb-0">What Our Clients Say About Our Digital Services</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s">
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-1.jpg"
-                            style="width: 60px; height: 60px;">
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-2.jpg"
-                            style="width: 60px; height: 60px;">
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-3.jpg"
-                            style="width: 60px; height: 60px;">
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-4.jpg"
-                            style="width: 60px; height: 60px;">
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Testimonial End -->
-
-
     <!-- Team Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="team">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
@@ -678,8 +374,8 @@
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h4 class="text-primary">Full Name</h4>
-                            <p class="text-uppercase m-0">Designation</p>
+                            <h4 class="text-primary">Dane Isid Cañete</h4>
+                            <p class="text-uppercase m-0">Developer</p>
                         </div>
                     </div>
                 </div>
@@ -699,29 +395,8 @@
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <h4 class="text-primary">Full Name</h4>
-                            <p class="text-uppercase m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-linkedin-in fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">Full Name</h4>
-                            <p class="text-uppercase m-0">Designation</p>
+                            <h4 class="text-primary">Khyle Ryan Cañazares</h4>
+                            <p class="text-uppercase m-0">Developer</p>
                         </div>
                     </div>
                 </div>
@@ -731,93 +406,6 @@
     <!-- Team End -->
 
 
-    <!-- Blog Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Latest Blog</h5>
-                <h1 class="mb-0">Read The Latest Articles from Our Blog Post</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="blog-item bg-light rounded overflow-hidden">
-                        <div class="blog-img position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/blog-1.jpg" alt="">
-                            <a class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4"
-                                href="">Web Design</a>
-                        </div>
-                        <div class="p-4">
-                            <div class="d-flex mb-3">
-                                <small class="me-3"><i class="far fa-user text-primary me-2"></i>John Doe</small>
-                                <small><i class="far fa-calendar-alt text-primary me-2"></i>01 Jan, 2045</small>
-                            </div>
-                            <h4 class="mb-3">How to build a website</h4>
-                            <p>Dolor et eos labore stet justo sed est sed sed sed dolor stet amet</p>
-                            <a class="text-uppercase" href="">Read More <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
-                    <div class="blog-item bg-light rounded overflow-hidden">
-                        <div class="blog-img position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/blog-2.jpg" alt="">
-                            <a class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4"
-                                href="">Web Design</a>
-                        </div>
-                        <div class="p-4">
-                            <div class="d-flex mb-3">
-                                <small class="me-3"><i class="far fa-user text-primary me-2"></i>John Doe</small>
-                                <small><i class="far fa-calendar-alt text-primary me-2"></i>01 Jan, 2045</small>
-                            </div>
-                            <h4 class="mb-3">How to build a website</h4>
-                            <p>Dolor et eos labore stet justo sed est sed sed sed dolor stet amet</p>
-                            <a class="text-uppercase" href="">Read More <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
-                    <div class="blog-item bg-light rounded overflow-hidden">
-                        <div class="blog-img position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/blog-3.jpg" alt="">
-                            <a class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4"
-                                href="">Web Design</a>
-                        </div>
-                        <div class="p-4">
-                            <div class="d-flex mb-3">
-                                <small class="me-3"><i class="far fa-user text-primary me-2"></i>John Doe</small>
-                                <small><i class="far fa-calendar-alt text-primary me-2"></i>01 Jan, 2045</small>
-                            </div>
-                            <h4 class="mb-3">How to build a website</h4>
-                            <p>Dolor et eos labore stet justo sed est sed sed sed dolor stet amet</p>
-                            <a class="text-uppercase" href="">Read More <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Blog Start -->
-
-
-    <!-- Vendor Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5 mb-5">
-            <div class="bg-white">
-                <div class="owl-carousel vendor-carousel">
-                    <img src="img/vendor-1.jpg" alt="">
-                    <img src="img/vendor-2.jpg" alt="">
-                    <img src="img/vendor-3.jpg" alt="">
-                    <img src="img/vendor-4.jpg" alt="">
-                    <img src="img/vendor-5.jpg" alt="">
-                    <img src="img/vendor-6.jpg" alt="">
-                    <img src="img/vendor-7.jpg" alt="">
-                    <img src="img/vendor-8.jpg" alt="">
-                    <img src="img/vendor-9.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Vendor End -->
 
 
     <!-- Footer Start -->
@@ -828,7 +416,8 @@
                     <div
                         class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
                         <a href="index.html" class="navbar-brand">
-                            <h1 class="m-0 text-white"><i class="fa fa-user-tie me-2"></i>Startup</h1>
+                            <h1 class="m-0 text-white"> <img src="/logo.png" width="26px" height="26px"
+                                    alt="" srcset=""> Vendora</h1>
                         </a>
                         <p class="mt-3 mb-4">Lorem diam sit erat dolor elitr et, diam lorem justo amet clita stet eos
                             sit. Elitr dolor duo lorem, elitr clita ipsum sea. Diam amet erat lorem stet eos. Diam amet
@@ -918,12 +507,8 @@
             <div class="row justify-content-end">
                 <div class="col-lg-8 col-md-6">
                     <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">Your Site
-                                Name</a>. All Rights Reserved.
-
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed by <a class="text-white border-bottom" href="https://htmlcodex.com">HTML
-                                Codex</a>
+                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">Vendora</a>. All
+                            Rights Reserved.
                         </p>
                     </div>
                 </div>
@@ -949,6 +534,37 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/" method="post">
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group mb-2">
+                            <label for="username">Username:</label>
+                            <br>
+                            <input required type="text" name="username" id="" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <br>
+                            <input required type="password" name="password" id="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
