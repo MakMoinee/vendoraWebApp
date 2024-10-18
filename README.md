@@ -29,3 +29,10 @@ exif,gd2,pdo_mysql,file_ext
 - Open start_service.bat
 ![Server Start](server.PNG)
 - Open a browser, and browse the url ``http://localhost:8443``
+
+## How To Resolve Issues With Extensions
+- Open php.ini file in your php directory
+- `Ctrl + f` and find the word `extension=`
+- remove `;` to enable specific extension
+![PHP Ini](resolve.PNG)
+- After removing `;`, `ctrl + s` to save and rerun php.ini by opening a new cmd and type `php --ini`
