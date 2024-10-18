@@ -187,11 +187,19 @@
                                             {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
                                         </td>
                                         <td>
+
+                                            <button class="btn" data-bs-target="#editMachineModal"
+                                                data-bs-toggle="modal"
+                                                onclick="updateMachine({{ $item->machineID }},'{{ $item->description }}','{{ $item->ip }}')">
+                                                <img src="/edit.svg" alt="" srcset="">
+                                            </button>
+
                                             <button class="btn" data-bs-target="#deleteMachineModal"
                                                 data-bs-toggle="modal"
                                                 onclick="deleteMachine({{ $item->machineID }})">
                                                 <img src="/fail.svg" alt="" srcset="">
                                             </button>
+
                                         </td>
                                         <td class="text-center"></td>
                                     @endforeach
@@ -389,6 +397,46 @@
         </div>
     </div>
 
+    <div class="modal fade" id="editMachineModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="editMachineModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editMachineModalLabel">Update Machine Information</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="updateMachineForm" action="/user_machine" method="post" autocomplete="off">
+                    @method('put')
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group mb-2">
+                            <label for="description" class="text-dark">Description:</label>
+                            <br>
+                            <input required type="text" name="description" id="updateDescription"
+                                class="form-control">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="ip" class="text-dark">IP:</label>
+                            <br>
+                            <input readonly required type="text" id="updateIP" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <p><b>Note:</b> Make Sure That The Machine Is <b>Online</b> and <b>Pingable</b>. Otherwise,
+                                it'll be
+                                failed. And also, Make Sure That You Are Connected With The <b>Same Network</b> with the
+                                device</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="btnUpdateMachine" value="yes">Update
+                            Machine</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="deleteMachineModal" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="deleteMachineModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -528,10 +576,51 @@
         {{ session()->forget('errorDeleteMachine') }}
     @endif
 
+    @if (session()->pull('successUpdateMachine'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Updated Machine',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successUpdateMachine') }}
+    @endif
+
+    @if (session()->pull('errorUpdateMachine'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed to update machine, Please try again later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorUpdateMachine') }}
+    @endif
+
     <script>
         function deleteMachine(id) {
             let field = document.getElementById('deleteMachineForm');
             field.action = `/user_machine/${id}`;
+        }
+
+        function updateMachine(id, description, ip) {
+            let field = document.getElementById('updateMachineForm');
+            field.action = `/user_machine/${id}`;
+
+            let updateDescription = document.getElementById('updateDescription');
+            updateDescription.value = description;
+
+            let updateIP = document.getElementById('updateIP');
+            updateIP.value = ip;
         }
     </script>
 </body>

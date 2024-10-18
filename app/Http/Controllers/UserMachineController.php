@@ -95,7 +95,28 @@ class UserMachineController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        if (session()->exists('users')) {
+            $user = session()->pull('users');
+            session()->put('users', $user);
+
+            if ($user['userType'] != "user") {
+                return redirect("/");
+            }
+
+            if ($request->btnUpdateMachine) {
+                $isUpdate = DB::table('machines')->where('machineID', '=', $id)->update([
+                    'description' => $request->description,
+                ]);
+                if ($isUpdate > 0) {
+                    session()->put('successUpdateMachine', true);
+                } else {
+                    session()->put('errorUpdateMachine', true);
+                }
+            }
+
+            return redirect("/user_machine");
+        }
+        return redirect("/");
     }
 
     /**

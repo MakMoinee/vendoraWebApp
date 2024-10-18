@@ -18,11 +18,15 @@ class WelcomeController extends Controller
             $user = session()->pull('users');
             session()->put('users', $user);
 
+
             if ($user['userType'] == "user") {
                 return redirect("/user_home");
             }
         }
-        return view('welcome');
+        $allUsers = count(json_decode(DB::table('users')->where('userType', '=', 'user')->get(), true));
+        $allMachines = count(json_decode(DB::table('machines')->get(), true));
+
+        return view('welcome', ['allUsers' => $allUsers, 'allMachines' => $allMachines]);
     }
 
     /**
