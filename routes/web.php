@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserHomeController;
+use App\Http\Controllers\UserMachineController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', WelcomeController::class);
+Route::resource('/user_home', UserHomeController::class);
+Route::resource('/user_machine', UserMachineController::class);
+Route::get('/logout', [WelcomeController::class, 'logout']);

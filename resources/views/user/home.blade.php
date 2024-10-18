@@ -84,13 +84,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="/" class="nav-item nav-link active">Home</a>
-                    <a href="#about" class="nav-item nav-link">About</a>
-                    <a href="#services" class="nav-item nav-link">Services</a>
-                    <a href="#team" class="nav-item nav-link">Our Team</a>
-                    <a class="nav-item nav-link" data-bs-target="#createAccountModal" data-bs-toggle="modal">Signup</a>
+                    <a href="/user_home" class="nav-item nav-link active">Home</a>
+                    <a href="/user_machine" class="nav-item nav-link">Machines</a>
                 </div>
-                <a data-bs-target="#loginModal" data-bs-toggle="modal" class="btn btn-primary py-2 px-4 ms-3">Login</a>
+                <a data-bs-target="#logoutModal" data-bs-toggle="modal" class="btn btn-primary py-2 px-4 ms-3">Logout</a>
             </div>
         </nav>
 
@@ -255,155 +252,6 @@
     </div>
     <!-- About End -->
 
-
-
-    <!-- Service Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="services">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Our Services</h5>
-                <h1 class="mb-0">Custom IT Solutions for Your Successful Business</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
-                    <div
-                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-shield-alt text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Cyber Security</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore
-                            sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
-                    <div
-                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-chart-pie text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Data Analytics</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore
-                            sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.9s">
-                    <div
-                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-code text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Web Development</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore
-                            sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
-                    <div
-                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fab fa-android text-white"></i>
-                        </div>
-                        <h4 class="mb-3">Apps Development</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore
-                            sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
-                    <div
-                        class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="service-icon">
-                            <i class="fa fa-search text-white"></i>
-                        </div>
-                        <h4 class="mb-3">SEO Optimization</h4>
-                        <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore
-                            sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.9s">
-                    <div
-                        class="position-relative bg-primary rounded h-100 d-flex flex-column align-items-center justify-content-center text-center p-5">
-                        <h3 class="text-white mb-3">Call Us For Quote</h3>
-                        <p class="text-white mb-3">Clita ipsum magna kasd rebum at ipsum amet dolor justo dolor est
-                            magna stet eirmod</p>
-                        <h2 class="text-white mb-0">+012 345 6789</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
-
-
-    <!-- Team Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="team">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
-                <h1 class="mb-0">Professional Stuffs Ready to Help Your Business</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-linkedin-in fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">Dane Isid Cañete</h4>
-                            <p class="text-uppercase m-0">Developer</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
-                                        class="fab fa-linkedin-in fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">Khyle Ryan Cañazares</h4>
-                            <p class="text-uppercase m-0">Developer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
 
 
 
@@ -602,31 +450,22 @@
         </div>
     </div>
 
-    <div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+                    <h1 class="modal-title fs-5" id="logoutModalLabel">Attention</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/" method="post">
+                <form action="/logout" method="get">
                     <div class="modal-body">
                         @csrf
-                        <div class="form-group mb-2">
-                            <label for="username">Username:</label>
-                            <br>
-                            <input required type="text" name="username" id="" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <br>
-                            <input required type="password" name="password" id="" class="form-control">
-                        </div>
+                        <h5>Are You Sure You Want To Logout ?</h5>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="btnLogin" value="yes">Login</button>
+                        <button type="submit" class="btn btn-primary" name="btnLogout" value="yes">Yes, Proceed</button>
                     </div>
                 </form>
             </div>
@@ -678,19 +517,19 @@
         </script>
         {{ session()->forget('errorAddUser') }}
     @endif
-    @if (session()->pull('successCreateUser'))
+    @if (session()->pull('successLogin'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Successfully Created Account',
+                    title: 'Successfully Login',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successCreateUser') }}
+        {{ session()->forget('successLogin') }}
     @endif
 </body>
 
