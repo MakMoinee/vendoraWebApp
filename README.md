@@ -36,3 +36,10 @@ exif,gd2,pdo_mysql,file_ext
 - remove `;` to enable specific extension
 ![PHP Ini](resolve.PNG)
 - After removing `;`, `ctrl + s` to save and rerun php.ini by opening a new cmd and type `php --ini`
+
+## How To Connect To Mysql
+- Make Sure you have installed the mysql server community
+- Create Database named `coindb`
+- Then Run in your root project directory this command ``php artisan migrate:fresh``
+![Step 1](db1.PNG)
+![Step 2](db2.PNG)
