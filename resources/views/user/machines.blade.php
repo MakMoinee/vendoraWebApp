@@ -162,8 +162,56 @@
                                         <th class="text-center"></th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+                                    @foreach ($machines as $item)
+                                        <td class="text-center">
+                                            {{ $item->machineID }}
+                                        </td>
+                                        <td>
+                                            {{ $item->description }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $item->ip }}
+                                        </td>
+                                        @if ($item->status == 'Active')
+                                            <td class="text-success">
+                                                Active
+                                            </td>
+                                        @else
+                                            <td class="text-danger">
+                                                Inactive
+                                            </td>
+                                        @endif
+
+                                        <td class="text-center">
+                                            {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                        </td>
+                                        <td>
+                                            <button class="btn" data-bs-target="#deleteMachineModal"
+                                                data-bs-toggle="modal"
+                                                onclick="deleteMachine({{ $item->machineID }})">
+                                                <img src="/fail.svg" alt="" srcset="">
+                                            </button>
+                                        </td>
+                                        <td class="text-center"></td>
+                                    @endforeach
+                                </tbody>
                             </table>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pagination">
+                                        <ul class="pagination">
+                                            @for ($i = 1; $i <= $machines->lastPage(); $i++)
+                                                <li class="page-item ">
+                                                    <a class="page-link {{ $machines->currentPage() == $i ? 'active' : '' }}"
+                                                        href="{{ $machines->url($i) }}">{{ $i }}</a>
+                                                </li>
+                                            @endfor
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -341,6 +389,33 @@
         </div>
     </div>
 
+    <div class="modal fade" id="deleteMachineModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="deleteMachineModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteMachineModalLabel">Attention</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="deleteMachineForm" action="/user_machine" method="post" autocomplete="off">
+                    @method('delete')
+                    @csrf
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <h5>Are You Sure You Want Delete This Machine?</h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="btnDeleteMachine" value="yes">Yes
+                            Proceed</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="logoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -407,9 +482,9 @@
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorAddUser') }}
+        {{ session()->forget('errorAddMachine') }}
     @endif
-    @if (session()->pull('errorAddMachine'))
+    @if (session()->pull('successAddMachine'))
         <script>
             setTimeout(() => {
                 Swal.fire({
@@ -423,7 +498,42 @@
         </script>
         {{ session()->forget('successAddMachine') }}
     @endif
+    @if (session()->pull('successDeleteMachine'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Deleted Machine',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('successDeleteMachine') }}
+    @endif
 
+    @if (session()->pull('errorDeleteMachine'))
+        <script>
+            setTimeout(() => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Failed to delete machine, Please try again later',
+                    showConfirmButton: false,
+                    timer: 800
+                });
+            }, 500);
+        </script>
+        {{ session()->forget('errorDeleteMachine') }}
+    @endif
+
+    <script>
+        function deleteMachine(id) {
+            let field = document.getElementById('deleteMachineForm');
+            field.action = `/user_machine/${id}`;
+        }
+    </script>
 </body>
 
 </html>

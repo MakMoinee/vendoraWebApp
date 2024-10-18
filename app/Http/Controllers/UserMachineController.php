@@ -21,7 +21,11 @@ class UserMachineController extends Controller
                 return redirect("/");
             }
 
-            return view('user.machines');
+            $data = DB::table('machines')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
+            return view('user.machines', ['machines' => $data]);
         }
         return redirect("/");
     }
@@ -39,7 +43,6 @@ class UserMachineController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         if (session()->exists('users')) {
             $user = session()->pull('users');
             session()->put('users', $user);
@@ -98,8 +101,26 @@ class UserMachineController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, Request $request)
     {
-        //
+        if (session()->exists('users')) {
+            $user = session()->pull('users');
+            session()->put('users', $user);
+
+            if ($user['userType'] != "user") {
+                return redirect("/");
+            }
+
+            if ($request->btnDeleteMachine) {
+                $isDeleted = DB::table('machines')->where('machineID', '=', $id)->delete();
+                if ($isDeleted > 0) {
+                    session()->put('successDeleteMachine', true);
+                } else {
+                    session()->put('errorDeleteMachine', true);
+                }
+            }
+            return redirect("/user_machine");
+        }
+        return redirect("/");
     }
 }
