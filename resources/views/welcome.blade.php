@@ -100,7 +100,7 @@
                     <img class="w-100" src="img/carousel-1.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Vendora</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Track Vending Sales Effortlessly,
                                 Anytime, Anywhere</h1>
                             <a data-bs-target="#createAccountModal" data-bs-toggle="modal"
@@ -114,7 +114,7 @@
                     <img class="w-100" src="img/carousel-2.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Creative & Innovative</h5>
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Vendora</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Maximize Profits with Smart
                                 Vending Insights</h1>
                             <a data-bs-target="#createAccountModal" data-bs-toggle="modal"
@@ -274,9 +274,6 @@
                         <h4 class="mb-3">Sales Tracker</h4>
                         <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore
                             sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
@@ -288,9 +285,6 @@
                         <h4 class="mb-3">Coin Sorter Machine</h4>
                         <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore
                             sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.9s">
@@ -302,9 +296,6 @@
                         <h4 class="mb-3">Reports</h4>
                         <p class="m-0">Amet justo dolor lorem kasd amet magna sea stet eos vero lorem ipsum dolore
                             sed</p>
-                        <a class="btn btn-lg btn-primary rounded" href="">
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
             </div>
