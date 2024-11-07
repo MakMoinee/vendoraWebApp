@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\UserMachineController;
+use App\Http\Controllers\UserReportsController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,5 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/', WelcomeController::class);
 Route::resource('/user_home', UserHomeController::class);
 Route::resource('/user_machine', UserMachineController::class);
+Route::resource('/reports', UserReportsController::class);
 Route::get('/logout', [WelcomeController::class, 'logout']);
