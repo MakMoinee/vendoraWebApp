@@ -100,6 +100,10 @@
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/user_home" class="nav-item nav-link ">Home</a>
                     <a href="/user_machine" class="nav-item nav-link active">Machines</a>
+                    <a href="/savings" class="nav-item nav-link">Savings</a>
+                    <a href="/withdraw" class="nav-item nav-link">Withdrawals</a>
+                    <a href="/reports" class="nav-item nav-link">Reports</a>
+                    <a href="/settings" class="nav-item nav-link">Settings</a>
                 </div>
                 <a data-bs-target="#logoutModal" data-bs-toggle="modal"
                     class="btn btn-primary py-2 px-4 ms-3">Logout</a>
@@ -150,73 +154,75 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="table border mb-0">
-                                <thead class="table-light fw-semibold">
-                                    <tr class="align-middle">
-                                        <th class="text-center">Machine ID</th>
-                                        <th>Description</th>
-                                        <th class="text-center">IP</th>
-                                        <th>Status</th>
-                                        <th class="text-center">Registered Date</th>
-                                        <th>Action</th>
-                                        <th class="text-center"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($machines as $item)
-                                        <td class="text-center">
-                                            {{ $item->machineID }}
-                                        </td>
-                                        <td>
-                                            {{ $item->description }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ $item->ip }}
-                                        </td>
-                                        @if ($item->status == 'Active')
-                                            <td class="text-success">
-                                                Active
+                            <div class="table-responsive">
+                                <table class="table border mb-0">
+                                    <thead class="table-light fw-semibold">
+                                        <tr class="align-middle">
+                                            <th class="text-center">Machine ID</th>
+                                            <th>Description</th>
+                                            <th class="text-center">IP</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Registered Date</th>
+                                            <th>Action</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($machines as $item)
+                                            <td class="text-center">
+                                                {{ $item->machineID }}
                                             </td>
-                                        @else
-                                            <td class="text-danger">
-                                                Inactive
+                                            <td>
+                                                {{ $item->description }}
                                             </td>
-                                        @endif
-
-                                        <td class="text-center">
-                                            {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
-                                        </td>
-                                        <td>
-
-                                            <button class="btn" data-bs-target="#editMachineModal"
-                                                data-bs-toggle="modal"
-                                                onclick="updateMachine({{ $item->machineID }},'{{ $item->description }}','{{ $item->ip }}')">
-                                                <img src="/edit.svg" alt="" srcset="">
-                                            </button>
-
-                                            <button class="btn" data-bs-target="#deleteMachineModal"
-                                                data-bs-toggle="modal"
-                                                onclick="deleteMachine({{ $item->machineID }})">
-                                                <img src="/fail.svg" alt="" srcset="">
-                                            </button>
-
-                                        </td>
-                                        <td class="text-center"></td>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="pagination">
-                                        <ul class="pagination">
-                                            @for ($i = 1; $i <= $machines->lastPage(); $i++)
-                                                <li class="page-item ">
-                                                    <a class="page-link {{ $machines->currentPage() == $i ? 'active' : '' }}"
-                                                        href="{{ $machines->url($i) }}">{{ $i }}</a>
-                                                </li>
-                                            @endfor
-                                        </ul>
-
+                                            <td class="text-center">
+                                                {{ $item->ip }}
+                                            </td>
+                                            @if ($item->status == 'Active')
+                                                <td class="text-success">
+                                                    Active
+                                                </td>
+                                            @else
+                                                <td class="text-danger">
+                                                    Inactive
+                                                </td>
+                                            @endif
+    
+                                            <td class="text-center">
+                                                {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                            </td>
+                                            <td>
+    
+                                                <button class="btn" data-bs-target="#editMachineModal"
+                                                    data-bs-toggle="modal"
+                                                    onclick="updateMachine({{ $item->machineID }},'{{ $item->description }}','{{ $item->ip }}')">
+                                                    <img src="/edit.svg" alt="" srcset="">
+                                                </button>
+    
+                                                <button class="btn" data-bs-target="#deleteMachineModal"
+                                                    data-bs-toggle="modal"
+                                                    onclick="deleteMachine({{ $item->machineID }})">
+                                                    <img src="/fail.svg" alt="" srcset="">
+                                                </button>
+    
+                                            </td>
+                                            <td class="text-center"></td>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="pagination">
+                                            <ul class="pagination">
+                                                @for ($i = 1; $i <= $machines->lastPage(); $i++)
+                                                    <li class="page-item ">
+                                                        <a class="page-link {{ $machines->currentPage() == $i ? 'active' : '' }}"
+                                                            href="{{ $machines->url($i) }}">{{ $i }}</a>
+                                                    </li>
+                                                @endfor
+                                            </ul>
+    
+                                        </div>
                                     </div>
                                 </div>
                             </div>

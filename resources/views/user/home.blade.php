@@ -100,8 +100,13 @@
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/user_home" class="nav-item nav-link active">Home</a>
                     <a href="/user_machine" class="nav-item nav-link">Machines</a>
+                    <a href="/savings" class="nav-item nav-link">Savings</a>
+                    <a href="/withdraw" class="nav-item nav-link">Withdrawals</a>
+                    <a href="/reports" class="nav-item nav-link">Reports</a>
+                    <a href="/settings" class="nav-item nav-link">Settings</a>
                 </div>
-                <a data-bs-target="#logoutModal" data-bs-toggle="modal" class="btn btn-primary py-2 px-4 ms-3">Logout</a>
+                <a data-bs-target="#logoutModal" data-bs-toggle="modal"
+                    class="btn btn-primary py-2 px-4 ms-3">Logout</a>
             </div>
         </nav>
 
@@ -116,38 +121,64 @@
             <div class="row g-5">
                 <div class="col-lg-7">
                     <div class="section-title position-relative pb-3 mb-5">
-                        <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
-                        <h1 class="mb-0">Empowering Vending Success with Smarter Sales Tracking</h1>
+                        <h1 class="mb-0">Dashboard Overview</h1>
                     </div>
-                    <p class="mb-4">At <b>Vendora</b>, we revolutionize vending machine management with an intuitive
-                        platform that provides real-time sales insights and inventory control. Our mission is to help
-                        you streamline operations, boost profitability, and unlock growth potential with data-driven
-                        solutions.</p>
-                    <div class="row g-0 mb-3">
-                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Professional Staff</h5>
-                        </div>
-                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
-                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>24/7 Support</h5>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
-                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
-                            style="width: 60px; height: 60px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="mb-2">Call to ask any question</h5>
-                            <h4 class="text-primary mb-0">+012 345 6789</h4>
-                        </div>
-                    </div>
-                    <a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn"
-                        data-wow-delay="0.9s">Request A Quote</a>
                 </div>
-                <div class="col-lg-5" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s"
-                            src="img/about.jpg" style="object-fit: cover;">
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card mb-4 text-dark bg-white">
+                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                            <div style="height: 120px;">
+                                <div>Total Sales</div>
+                                <div class="fs-4 fw-semibold">P0.00</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card mb-4 text-dark bg-white">
+                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                            <div style="height: 120px;">
+                                <div>Total Expenses</div>
+                                <div class="fs-4 fw-semibold">P0.00</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card mb-4 text-dark bg-white">
+                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                            <div style="height: 120px;">
+                                <div>Total Savings</div>
+                                <div class="fs-4 fw-semibold">P0.00</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card mb-4 text-dark bg-white">
+                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                            <div style="height: 120px;">
+                                <div>Total Coins Counted</div>
+                                <div class="fs-4 fw-semibold">P0.00</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card mb-4 text-dark bg-white">
+                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                            <div style="height: 120px;">
+                                <div>Total Withdrawal</div>
+                                <div class="fs-4 fw-semibold">P0.00</div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -368,7 +399,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" name="btnLogout" value="yes">Yes, Proceed</button>
+                        <button type="submit" class="btn btn-primary" name="btnLogout" value="yes">Yes,
+                            Proceed</button>
                     </div>
                 </form>
             </div>
