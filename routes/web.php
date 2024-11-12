@@ -3,6 +3,8 @@
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\UserMachineController;
 use App\Http\Controllers\UserReportsController;
+use App\Http\Controllers\UserSavingsController;
+use App\Http\Controllers\UserWithdrawals;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +23,6 @@ Route::resource('/', WelcomeController::class);
 Route::resource('/user_home', UserHomeController::class);
 Route::resource('/user_machine', UserMachineController::class);
 Route::resource('/reports', UserReportsController::class);
+Route::resource('/savings', UserSavingsController::class);
+Route::resource('/withdraw', UserWithdrawals::class);
 Route::get('/logout', [WelcomeController::class, 'logout']);
