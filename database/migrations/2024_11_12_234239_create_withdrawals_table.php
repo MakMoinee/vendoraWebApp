@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('userID')->nullable(false);
             $table->integer('machineID')->nullable(false);
             $table->string('denomination')->nullable(false);
+            $table->string('purpose')->nullable(false);
             $table->decimal('total', 10, 2)->nullable(false);
             $table->decimal('remaining', 10, 2)->nullable(false);
             $table->timestamps();

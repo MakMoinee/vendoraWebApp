@@ -122,14 +122,30 @@
                 <div class="col-lg-12">
                     <div class="section-title position-relative pb-3 mb-5">
                         <h5 class="fw-bold text-primary text-uppercase">SAVINGS</h5>
-                        <h1 class="mb-0">Connected Machine/s</h1>
+                        <h1 class="mb-0">Overview</h1>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
-                    <button class="btn btn-primary" data-bs-target="#addMachineModal" data-bs-toggle="modal">Add
-                        Machine</button>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card mb-4 text-dark bg-white">
+                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                            <div style="height: 120px;">
+                                <div>Total Savings</div>
+                                <div class="fs-4 fw-semibold">P0.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card mb-4 text-dark bg-white">
+                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                            <div style="height: 120px;">
+                                <div>Total Expenses</div>
+                                <div class="fs-4 fw-semibold">P0.00</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <br>

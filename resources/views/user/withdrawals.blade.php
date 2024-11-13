@@ -201,6 +201,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card bg-white">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="form-group d-flex">
+                                        <input type="search" name="machine" id="" class="form-control" placeholder="Enter Machine">
+                                        <button class="btn btn-primary">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table border mb-0">
