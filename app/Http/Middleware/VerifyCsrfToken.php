@@ -13,6 +13,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        '/1/count'
+        '/1/count',
+        '/5/count',
+        '/10/count',
     ];
 }

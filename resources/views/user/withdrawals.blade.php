@@ -160,7 +160,9 @@
                         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div style="height: 120px;">
                                 <div>Total 10 Peso Coins</div>
-                                <div class="fs-4 fw-semibold">P0.00</div>
+                                <div class="fs-4 fw-semibold">
+                                    <h3 id="tenData">P0.00</h3>
+                                </div>
                                 {{-- <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button> --}}
 
                             </div>
@@ -172,7 +174,9 @@
                         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div style="height: 120px;">
                                 <div>Total 5 Peso Coins</div>
-                                <div class="fs-4 fw-semibold">P0.00</div>
+                                <div class="fs-4 fw-semibold">
+                                    <h3 id="fiveData">P0.00</h3>
+                                </div>
                                 {{-- <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button> --}}
 
                             </div>
@@ -187,7 +191,7 @@
                                 <div class="fs-4 fw-semibold">
                                     <h3 id="pesoData">P0.00</h3>
                                 </div>
-                                <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button>
+                                {{-- <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button> --}}
 
                             </div>
                         </div>
@@ -630,9 +634,9 @@
                 });
             }
         }
-        async function fetchCoinCount(ip) {
+        async function fetchCoinCount(ip, denom) {
             const apiUrl =
-                `http://${ip}/1/count`; // Replace <IP_ADDRESS> with the actual IP address of the server.
+                `http://${ip}/${denom}/count`; // Replace <IP_ADDRESS> with the actual IP address of the server.
 
             try {
                 // Make the API call
@@ -662,7 +666,7 @@
         function refreshPeso() {
             let selectedMachine = document.getElementById('selectedMachine');
             console.log(selectedMachine.value);
-            fetchCoinCount(selectedMachine.value).then((coinCount) => {
+            fetchCoinCount(selectedMachine.value, 1).then((coinCount) => {
                 if (coinCount !== null) {
                     // Do something with the coin count
                     console.log(`Retrieved Coin Count: ${coinCount}`);
@@ -672,6 +676,44 @@
                 } else {
                     console.log('Failed to retrieve Coin Count');
                     let pesoData = document.getElementById('pesoData');
+                    pesoData.innerHTML = 'P0.00';
+                }
+            });
+
+            refreshFive();
+            refreshTen();
+        }
+
+        function refreshFive() {
+            let selectedMachine = document.getElementById('selectedMachine');
+            console.log(selectedMachine.value);
+            fetchCoinCount(selectedMachine.value, 5).then((coinCount) => {
+                if (coinCount !== null) {
+                    // Do something with the coin count
+                    console.log(`Retrieved Coin Count: ${coinCount}`);
+                    let pesoData = document.getElementById('fiveData');
+                    pesoData.innerHTML = `P${coinCount}.00`;
+
+                } else {
+                    console.log('Failed to retrieve Coin Count');
+                    let pesoData = document.getElementById('pesoData');
+                    pesoData.innerHTML = 'P0.00';
+                }
+            });
+        }
+        function refreshTen() {
+            let selectedMachine = document.getElementById('selectedMachine');
+            console.log(selectedMachine.value);
+            fetchCoinCount(selectedMachine.value, 10).then((coinCount) => {
+                if (coinCount !== null) {
+                    // Do something with the coin count
+                    console.log(`Retrieved Coin Count: ${coinCount}`);
+                    let pesoData = document.getElementById('tenData');
+                    pesoData.innerHTML = `P${coinCount}.00`;
+
+                } else {
+                    console.log('Failed to retrieve Coin Count');
+                    let pesoData = document.getElementById('tenData');
                     pesoData.innerHTML = 'P0.00';
                 }
             });
