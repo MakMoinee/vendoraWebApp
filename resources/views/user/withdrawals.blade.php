@@ -132,10 +132,13 @@
                         <label for="machine" class="text-dark">Choose Machine:</label>
                         <div class="row">
                             <div class="col-lg-5 d-flex">
-                                <select name="machine" id="" class="form-control text-dark bg-white me-2">
-                                    <option value=""></option>
+                                <select name="machine" id="selectedMachine"
+                                    class="form-control text-dark bg-white me-2">
+                                    @foreach ($machines as $item)
+                                        <option value="{{ $item->ip }}">{{ $item->ip }}</option>
+                                    @endforeach
                                 </select>
-                                <button class="btn btn-primary">Enter</button>
+                                <button class="btn btn-primary" onclick="refreshPeso()">Enter</button>
                             </div>
                         </div>
                     </div>
@@ -158,7 +161,7 @@
                             <div style="height: 120px;">
                                 <div>Total 10 Peso Coins</div>
                                 <div class="fs-4 fw-semibold">P0.00</div>
-                                <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button>
+                                {{-- <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button> --}}
 
                             </div>
                         </div>
@@ -170,7 +173,7 @@
                             <div style="height: 120px;">
                                 <div>Total 5 Peso Coins</div>
                                 <div class="fs-4 fw-semibold">P0.00</div>
-                                <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button>
+                                {{-- <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button> --}}
 
                             </div>
                         </div>
@@ -181,7 +184,9 @@
                         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div style="height: 120px;">
                                 <div>Total 1 Peso Coins</div>
-                                <div class="fs-4 fw-semibold">P0.00</div>
+                                <div class="fs-4 fw-semibold">
+                                    <h3 id="pesoData">P0.00</h3>
+                                </div>
                                 <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button>
 
                             </div>
@@ -205,7 +210,8 @@
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="form-group d-flex">
-                                        <input type="search" name="machine" id="" class="form-control" placeholder="Enter Machine">
+                                        <input type="search" name="machine" id="" class="form-control"
+                                            placeholder="Enter Machine">
                                         <button class="btn btn-primary">Search</button>
                                     </div>
                                 </div>
@@ -623,6 +629,52 @@
                     showConfirmButton: true,
                 });
             }
+        }
+        async function fetchCoinCount(ip) {
+            const apiUrl =
+                `http://${ip}/1/count`; // Replace <IP_ADDRESS> with the actual IP address of the server.
+
+            try {
+                // Make the API call
+                const response = await fetch(apiUrl);
+
+                // Check if the response is OK (status code 200-299)
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Parse the JSON response
+                const data = await response.json();
+
+                // Extract the Coin Count
+                if (data['Coin Count'] !== undefined) {
+                    console.log(`Coin Count: ${data['Coin Count']}`);
+                    return data['Coin Count'];
+                } else {
+                    throw new Error('Coin Count key not found in response');
+                }
+            } catch (error) {
+                console.error('Error fetching Coin Count:', error);
+                return null;
+            }
+        }
+
+        function refreshPeso() {
+            let selectedMachine = document.getElementById('selectedMachine');
+            console.log(selectedMachine.value);
+            fetchCoinCount(selectedMachine.value).then((coinCount) => {
+                if (coinCount !== null) {
+                    // Do something with the coin count
+                    console.log(`Retrieved Coin Count: ${coinCount}`);
+                    let pesoData = document.getElementById('pesoData');
+                    pesoData.innerHTML = `P${coinCount}.00`;
+
+                } else {
+                    console.log('Failed to retrieve Coin Count');
+                    let pesoData = document.getElementById('pesoData');
+                    pesoData.innerHTML = 'P0.00';
+                }
+            });
         }
     </script>
 </body>

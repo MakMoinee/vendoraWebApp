@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserWithdrawals extends Controller
 {
@@ -18,7 +20,10 @@ class UserWithdrawals extends Controller
             if ($user['userType'] != "user") {
                 return redirect("/");
             }
-            return view('user.withdrawals');
+
+            $allMachines = DB::table('machines')->where('userID', '=', $user['userID'])->get();
+
+            return view('user.withdrawals', ['machines' => $allMachines]);
         }
         return redirect("/");
     }
@@ -69,5 +74,28 @@ class UserWithdrawals extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    private function getCoinCount(string $ip, string $route): ?int
+    {
+        $client = new \GuzzleHttp\Client();
+
+        try {
+            // Construct the full URL
+            $url = 'http://' . $ip . $route;
+
+            // Make the GET request
+            $response = $client->get($url, ['timeout' => 5]);
+
+            // Decode the JSON response
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            // Check if 'Coin Count' exists and return it
+            return isset($data['Coin Count']) ? (int) $data['Coin Count'] : 0;
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            // Handle exceptions (e.g., network issues)
+            return 0;
+        }
     }
 }
