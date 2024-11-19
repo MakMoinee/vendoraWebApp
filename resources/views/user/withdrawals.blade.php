@@ -57,7 +57,7 @@
     <!-- Spinner End -->
 
 
-    <!-- Topbar Start -->
+    {{-- <!-- Topbar Start -->
     <div class="container-fluid bg-dark px-5 d-none d-lg-block">
         <div class="row gx-0">
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
@@ -83,7 +83,7 @@
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
+    <!-- Topbar End --> --}}
 
 
     <!-- Navbar & Carousel Start -->
@@ -150,7 +150,9 @@
                         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div style="height: 120px;">
                                 <div>Total Available Balance</div>
-                                <div class="fs-4 fw-semibold">P0.00</div>
+                                <div class="fs-4 fw-semibold">
+                                    <h3 id="allData">P0.00</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -260,15 +262,6 @@
                             <h1 class="m-0 text-white"> <img src="/logo.png" width="26px" height="26px"
                                     alt="" srcset=""> Vendora</h1>
                         </a>
-                        <p class="mt-3 mb-4">Lorem diam sit erat dolor elitr et, diam lorem justo amet clita stet eos
-                            sit. Elitr dolor duo lorem, elitr clita ipsum sea. Diam amet erat lorem stet eos. Diam amet
-                            et kasd eos duo.</p>
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control border-white p-3" placeholder="Your Email">
-                                <button class="btn btn-dark">Sign Up</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-6">
@@ -357,6 +350,7 @@
         </div>
     </div>
     <!-- Footer End -->
+
 
 
     <!-- Back to Top -->
@@ -624,6 +618,8 @@
     @endif
 
     <script>
+        let total = 0;
+
         function withdraw(amount) {
             if (amount <= 0) {
                 Swal.fire({
@@ -664,6 +660,7 @@
         }
 
         function refreshPeso() {
+            total = 0;
             let selectedMachine = document.getElementById('selectedMachine');
             console.log(selectedMachine.value);
             fetchCoinCount(selectedMachine.value, 1).then((coinCount) => {
@@ -672,6 +669,7 @@
                     console.log(`Retrieved Coin Count: ${coinCount}`);
                     let pesoData = document.getElementById('pesoData');
                     pesoData.innerHTML = `P${coinCount}.00`;
+                    total += coinCount;
 
                 } else {
                     console.log('Failed to retrieve Coin Count');
@@ -682,6 +680,10 @@
 
             refreshFive();
             refreshTen();
+            setTimeout(() => {
+                let allData = document.getElementById('allData');
+                allData.innerHTML = `P${total}.00`;
+            }, 3000);
         }
 
         function refreshFive() {
@@ -693,14 +695,16 @@
                     console.log(`Retrieved Coin Count: ${coinCount}`);
                     let pesoData = document.getElementById('fiveData');
                     pesoData.innerHTML = `P${coinCount}.00`;
-
+                    total += coinCount;
                 } else {
                     console.log('Failed to retrieve Coin Count');
                     let pesoData = document.getElementById('pesoData');
                     pesoData.innerHTML = 'P0.00';
+                    total += 0;
                 }
             });
         }
+
         function refreshTen() {
             let selectedMachine = document.getElementById('selectedMachine');
             console.log(selectedMachine.value);
@@ -710,11 +714,12 @@
                     console.log(`Retrieved Coin Count: ${coinCount}`);
                     let pesoData = document.getElementById('tenData');
                     pesoData.innerHTML = `P${coinCount}.00`;
-
+                    total += coinCount;
                 } else {
                     console.log('Failed to retrieve Coin Count');
                     let pesoData = document.getElementById('tenData');
                     pesoData.innerHTML = 'P0.00';
+                    total += coinCount;
                 }
             });
         }

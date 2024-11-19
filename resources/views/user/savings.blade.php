@@ -57,7 +57,7 @@
     <!-- Spinner End -->
 
 
-    <!-- Topbar Start -->
+    {{-- <!-- Topbar Start -->
     <div class="container-fluid bg-dark px-5 d-none d-lg-block">
         <div class="row gx-0">
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
@@ -83,7 +83,7 @@
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
+    <!-- Topbar End --> --}}
 
 
     <!-- Navbar & Carousel Start -->
@@ -157,8 +157,8 @@
 
 
 
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+      <!-- Footer Start -->
+      <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-4 col-md-6 footer-about">
@@ -168,15 +168,6 @@
                             <h1 class="m-0 text-white"> <img src="/logo.png" width="26px" height="26px"
                                     alt="" srcset=""> Vendora</h1>
                         </a>
-                        <p class="mt-3 mb-4">Lorem diam sit erat dolor elitr et, diam lorem justo amet clita stet eos
-                            sit. Elitr dolor duo lorem, elitr clita ipsum sea. Diam amet erat lorem stet eos. Diam amet
-                            et kasd eos duo.</p>
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control border-white p-3" placeholder="Your Email">
-                                <button class="btn btn-dark">Sign Up</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-6">
@@ -265,6 +256,7 @@
         </div>
     </div>
     <!-- Footer End -->
+
 
 
     <!-- Back to Top -->
