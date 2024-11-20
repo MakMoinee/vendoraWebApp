@@ -62,7 +62,7 @@ class UserWithdrawals extends Controller
                     $newWithdraw->userID = $user['userID'];
                     $newWithdraw->ip = $request->withdrawIP;
                     $newWithdraw->denomination = $request->denom;
-                    $remaining = $request->withdrawAmount - $request->avail;
+                    $remaining = $request->avail - $request->withdrawAmount;
                     $newWithdraw->total = $request->withdrawAmount;
                     $newWithdraw->purpose = $request->purpose;
                     $newWithdraw->remaining = $remaining;
