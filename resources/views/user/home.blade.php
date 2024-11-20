@@ -102,6 +102,7 @@
                     <a href="/user_machine" class="nav-item nav-link">Machines</a>
                     <a href="/savings" class="nav-item nav-link">Savings</a>
                     <a href="/withdraw" class="nav-item nav-link">Withdrawals</a>
+                    <a href="/logs" class="nav-item nav-link">Coin Counter Logs</a>
                     <a href="/reports" class="nav-item nav-link">Reports</a>
                     <a href="/settings" class="nav-item nav-link">Settings</a>
                 </div>

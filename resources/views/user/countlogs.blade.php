@@ -22,7 +22,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -103,8 +102,8 @@
                     <a href="/user_machine" class="nav-item nav-link ">Machines</a>
                     <a href="/savings" class="nav-item nav-link">Savings</a>
                     <a href="/withdraw" class="nav-item nav-link">Withdrawals</a>
-                    <a href="/reports" class="nav-item nav-link active">Reports</a>
-                    <a href="/logs" class="nav-item nav-link">Coin Counter Logs</a>
+                    <a href="/reports" class="nav-item nav-link">Reports</a>
+                    <a href="/logs" class="nav-item nav-link active">Coin Counter Logs</a>
                     <a href="/settings" class="nav-item nav-link">Settings</a>
                 </div>
                 <a data-bs-target="#logoutModal" data-bs-toggle="modal"
@@ -123,71 +122,67 @@
             <div class="row g-5">
                 <div class="col-lg-12">
                     <div class="section-title position-relative pb-3 mb-5">
-                        <h1 class="mb-0">Generate Report</h1>
+                        <h1 class="mb-0">Coin Counter Logs</h1>
                     </div>
                 </div>
             </div>
             <br>
-            <div class="row mb-4">
+            <div class="row">
                 <div class="col-lg-12">
-                    <form action="/reports" method="get">
-                        @csrf
-                        <div class="card mb-4 text-dark bg-white">
-                            <div class="card-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                            <div class="form-group mb-2">
-                                                <label for="reportType">Report Type:</label>
-                                                <br>
-                                                <select style="cursor: pointer;" name="reportType" id=""
-                                                    class="form-control bg-white text-dark mt-1">
-                                                    <option value="weekly">Weekly Report</option>
-                                                    <option value="monthly">Monthly Report</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group mb-2">
-                                                <label for="start">Start Date:</label>
-                                                <br>
-                                                <input required type="date" name="start" id=""
-                                                    class="form-control mt-1 bg-white text-dark">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group mb-2">
-                                                <label for="end">End Date:</label>
-                                                <br>
-                                                <input required type="date" name="ends" id=""
-                                                    class="form-control mt-1 bg-white text-dark">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="form-group">
-                                                <button style="width: 100%; height: 70px;" type="submit"
-                                                    class="btn btn-success text-white">GENERATE</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-lg-12">
-                    <div class="card mb-4 text-dark bg-white">
-
-                        <div class="card-header">
-                            <h5>{{ $prefix }} Sales Graph</h5>
-                        </div>
+                    <div class="card mb-4">
                         <div class="card-body">
-                            <div class="container">
+                            <div class="table-responsive">
+                                <table class="table border mb-0">
+                                    <thead class="table-light fw-semibold">
+                                        <tr class="align-middle">
+                                            <th class="text-center">Log ID</th>
+                                            <th>Total Amount</th>
+                                            <th class="text-center">Total One Peso Coin</th>
+                                            <th>Total Five Peso Coin</th>
+                                            <th class="text-center">Total Ten Peso Coin</th>
+                                            <th>Action</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($allLogs as $item)
+                                            <td class="text-center">
+                                                {{ $item->clID }}
+                                            </td>
+                                            <td>
+                                                {{ number_format($item->totalAmount, 2) }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ number_format($item->totalPesoCoin, 2) }}
+                                            </td>
+                                            <td>
+                                                {{ number_format($item->totalFiveCoin, 2) }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ number_format($item->totalTenCoin, 2) }}
+                                            </td>
+
+                                            <td>
+                                                {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                            </td>
+                                            <td></td>
+                                            <td class="text-center"></td>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                                 <div class="row">
-                                    <div class="col-lg-12">
-                                        <canvas id="myChart"></canvas>
+                                    <div class="col-md-12">
+                                        <div class="pagination">
+                                            <ul class="pagination">
+                                                @for ($i = 1; $i <= $allLogs->lastPage(); $i++)
+                                                    <li class="page-item ">
+                                                        <a class="page-link {{ $allLogs->currentPage() == $i ? 'active' : '' }}"
+                                                            href="{{ $allLogs->url($i) }}">{{ $i }}</a>
+                                                    </li>
+                                                @endfor
+                                            </ul>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -203,8 +198,8 @@
 
 
 
-      <!-- Footer Start -->
-      <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-4 col-md-6 footer-about">
@@ -308,6 +303,7 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i
             class="bi bi-arrow-up"></i></a>
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -584,29 +580,6 @@
             let updateIP = document.getElementById('updateIP');
             updateIP.value = ip;
         }
-
-        const ctx = document.getElementById('myChart').getContext('2d');
-
-        const myChart = new Chart(ctx, {
-            type: 'bar', // Change to 'line', 'pie', etc., as needed
-            data: {
-                labels: @json($labels), // Labels for X-axis
-                datasets: [{
-                    label: 'Sales Data',
-                    data: @json($data), // Data for Y-axis
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Bar color
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
     </script>
 </body>
 

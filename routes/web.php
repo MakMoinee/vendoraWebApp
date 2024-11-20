@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserCountLogs;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\UserMachineController;
 use App\Http\Controllers\UserReportsController;
@@ -24,5 +25,6 @@ Route::resource('/user_home', UserHomeController::class);
 Route::resource('/user_machine', UserMachineController::class);
 Route::resource('/reports', UserReportsController::class);
 Route::resource('/savings', UserSavingsController::class);
+Route::resource('/logs', UserCountLogs::class);
 Route::resource('/withdraw', UserWithdrawals::class);
 Route::get('/logout', [WelcomeController::class, 'logout']);
