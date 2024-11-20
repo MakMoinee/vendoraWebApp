@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserSavingsController extends Controller
 {
@@ -18,7 +19,28 @@ class UserSavingsController extends Controller
             if ($user['userType'] != "user") {
                 return redirect("/");
             }
-            return view('user.savings');
+
+            $allWithdrawals = DB::table('withdrawals')
+                ->where('userID', '=', $user['userID'])
+                ->where('purpose', '=', 'savings')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
+            $query = json_decode(DB::table('withdrawals')
+                ->where('userID', '=', $user['userID'])
+                ->get(), true);
+
+            $totalSavings = 0;
+            $totalExp = 0;
+            foreach ($query as $q) {
+                if ($q['purpose'] == 'savings') {
+                    $totalSavings += $q['total'];
+                } else {
+                    $totalExp += $q['total'];
+                }
+            }
+
+            return view('user.savings', ['withdrawals' => $allWithdrawals, 'totalSavings' => $totalSavings, 'totalExp' => $totalExp]);
         }
         return redirect("/");
     }

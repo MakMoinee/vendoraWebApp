@@ -132,7 +132,7 @@
                         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div style="height: 120px;">
                                 <div>Total Savings</div>
-                                <div class="fs-4 fw-semibold">P0.00</div>
+                                <div class="fs-4 fw-semibold">P{{ number_format($totalSavings, 2) }}</div>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div style="height: 120px;">
                                 <div>Total Expenses</div>
-                                <div class="fs-4 fw-semibold">P0.00</div>
+                                <div class="fs-4 fw-semibold">P{{ number_format($totalExp, 2) }}</div>
                             </div>
                         </div>
                     </div>
@@ -157,8 +157,8 @@
 
 
 
-      <!-- Footer Start -->
-      <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-4 col-md-6 footer-about">
