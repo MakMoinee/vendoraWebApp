@@ -150,16 +150,16 @@
                                                 {{ $item->clID }}
                                             </td>
                                             <td>
-                                                {{ number_format($item->totalAmount, 2) }}
+                                                P{{ number_format($item->totalAmount, 2) }}
                                             </td>
                                             <td class="text-center">
-                                                {{ number_format($item->totalPesoCoin, 2) }}
+                                                P{{ number_format($item->totalPesoCoin, 2) }}
                                             </td>
                                             <td>
-                                                {{ number_format($item->totalFiveCoin, 2) }}
+                                                P{{ number_format($item->totalFiveCoin, 2) }}
                                             </td>
                                             <td class="text-center">
-                                                {{ number_format($item->totalTenCoin, 2) }}
+                                                P{{ number_format($item->totalTenCoin, 2) }}
                                             </td>
 
                                             <td>
