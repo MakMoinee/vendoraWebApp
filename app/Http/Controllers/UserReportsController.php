@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserReportsController extends Controller
 {
@@ -23,11 +24,27 @@ class UserReportsController extends Controller
             if ($reportType == 'monthly') {
                 $prefix = "Monthly";
                 $labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-                $data = [65, 59, 80, 81, 56, 55, 40];
+                $withdrawals = DB::table('withdrawals')
+                    ->selectRaw('MONTH(created_at) as month, SUM(total) as total')
+                    ->groupBy(DB::raw('MONTH(created_at)'))
+                    ->pluck('total', 'month');
+
+                // Populate data for each month (default to 0 if no data)
+                $data = array_map(function ($month) use ($withdrawals) {
+                    return $withdrawals[$month] ?? 0;
+                }, range(1, 12));
             } else {
                 $prefix = "Weekly";
                 $labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-                $data = [65, 59, 80, 81, 56, 55, 40];
+                $withdrawals = DB::table('withdrawals')
+                    ->selectRaw('DAYOFWEEK(created_at) as day, SUM(total) as total')
+                    ->groupBy(DB::raw('DAYOFWEEK(created_at)'))
+                    ->pluck('total', 'day');
+
+                // Populate data for each day (default to 0 if no data)
+                $data = array_map(function ($day) use ($withdrawals) {
+                    return $withdrawals[$day] ?? 0;
+                }, range(1, 7));
             }
 
 
