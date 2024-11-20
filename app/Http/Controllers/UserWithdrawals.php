@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CoinCountLogs;
 use App\Models\Withdrawals;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -75,6 +76,15 @@ class UserWithdrawals extends Controller
                 } else {
                     session()->put("errorWithdraw", true);
                 }
+            } else if ($request->btnStoreLogs) {
+                $newLog = new CoinCountLogs();
+                $newLog->userID = $user['userID'];
+                $newLog->totalAmount = $request->totalAmount;
+                $newLog->totalTenCoin = $request->totalTenCoin;
+                $newLog->totalFiveCoin = $request->totalFiveCoin;
+                $newLog->totalPesoCoin = $request->totalPesoCoin;
+                $newLog->save();
+                return response()->json(["success" => true], 200);
             }
             return redirect("/withdraw");
         }

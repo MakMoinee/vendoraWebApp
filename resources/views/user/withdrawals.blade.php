@@ -826,6 +826,10 @@
                 total = totalPeso + totalFive + totalTen;
                 allData.innerHTML = `P${total}.00`;
             }, 3000);
+
+            setTimeout(() => {
+                storeLogs();
+            }, 3000);
         }
 
         function refreshFive() {
@@ -864,6 +868,37 @@
                     totalTen = 0;
                 }
             });
+        }
+
+        function storeLogs() {
+            const data = {
+                totalAmount: totalTen + totalFive + totalPeso,
+                totalTenCoin: totalTen,
+                totalFiveCoin: totalFive,
+                totalPesoCoin: totalPeso,
+                btnStoreLogs: true // Flag to trigger the log storage logic on backend
+            };
+            fetch(`/withdraw`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                            'content') // For CSRF protection
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(responseData => {
+                    if (responseData.success) {
+                        console.log('Log saved successfully!');
+                    } else {
+                        console.log('Failed to save log.');
+                    }
+                })
+                .catch(error => {
+                    console.log('Error:', error);
+                    console.log('Error saving log.');
+                });
         }
 
         try {
