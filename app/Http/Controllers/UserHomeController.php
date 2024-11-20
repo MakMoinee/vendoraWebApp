@@ -33,10 +33,10 @@ class UserHomeController extends Controller
                 }
             }
 
-            $data = json_decode(DB::table('coin_count_logs')
+            $data = DB::table('coin_count_logs')
                 ->where('userID', '=', $user['userID'])
                 ->orderBy('created_at', 'desc')
-                ->first(), true);
+                ->first()->toArray();
 
             return view('user.home', [
                 'totalSavings' => $totalSavings,
