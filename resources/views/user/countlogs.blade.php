@@ -146,27 +146,29 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($allLogs as $item)
-                                            <td class="text-center">
-                                                {{ $item->clID }}
-                                            </td>
-                                            <td>
-                                                P{{ number_format($item->totalAmount, 2) }}
-                                            </td>
-                                            <td class="text-center">
-                                                P{{ number_format($item->totalPesoCoin, 2) }}
-                                            </td>
-                                            <td>
-                                                P{{ number_format($item->totalFiveCoin, 2) }}
-                                            </td>
-                                            <td class="text-center">
-                                                P{{ number_format($item->totalTenCoin, 2) }}
-                                            </td>
+                                            <tr class="align-middle">
+                                                <td class="text-center">
+                                                    {{ $item->clID }}
+                                                </td>
+                                                <td>
+                                                    P{{ number_format($item->totalAmount, 2) }}
+                                                </td>
+                                                <td class="text-center">
+                                                    P{{ number_format($item->totalPesoCoin, 2) }}
+                                                </td>
+                                                <td>
+                                                    P{{ number_format($item->totalFiveCoin, 2) }}
+                                                </td>
+                                                <td class="text-center">
+                                                    P{{ number_format($item->totalTenCoin, 2) }}
+                                                </td>
 
-                                            <td>
-                                                {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
-                                            </td>
-                                            <td></td>
-                                            <td class="text-center"></td>
+                                                <td>
+                                                    {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                                </td>
+                                                <td></td>
+                                                <td class="text-center"></td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
