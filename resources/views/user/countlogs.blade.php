@@ -140,7 +140,7 @@
                                             <th class="text-center">Total One Peso Coin</th>
                                             <th>Total Five Peso Coin</th>
                                             <th class="text-center">Total Ten Peso Coin</th>
-                                            <th>Action</th>
+                                            <th>Log Date</th>
                                             <th class="text-center"></th>
                                         </tr>
                                     </thead>
