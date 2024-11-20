@@ -237,7 +237,7 @@
                                             <th>Amount Withdrawn</th>
                                             <th class="text-center">Amount Remaining</th>
                                             <th>Purpose</th>
-                                            <th class="text-center"></th>
+                                            <th class="text-center">Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -261,7 +261,9 @@
                                                 <td>
                                                     {{ $item->purpose }}
                                                 </td>
-                                                <td class="text-center"></td>
+                                                <td class="text-center">
+                                                    {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
