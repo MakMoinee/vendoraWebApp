@@ -193,11 +193,6 @@
                                             </td>
                                             <td>
     
-                                                <button class="btn" data-bs-target="#editMachineModal"
-                                                    data-bs-toggle="modal"
-                                                    onclick="updateMachine({{ $item->machineID }},'{{ $item->description }}','{{ $item->ip }}')">
-                                                    <img src="/edit.svg" alt="" srcset="">
-                                                </button>
     
                                                 <button class="btn" data-bs-target="#deleteMachineModal"
                                                     data-bs-toggle="modal"
