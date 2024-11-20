@@ -234,13 +234,53 @@
                                             <th class="text-center">ID</th>
                                             <th>Machine</th>
                                             <th class="text-center">Money Denomination</th>
-                                            <th>Total</th>
-                                            <th class="text-center">Remaining Balance</th>
-                                            <th>Action</th>
+                                            <th>Amount Withdrawn</th>
+                                            <th class="text-center">Amount Remaining</th>
+                                            <th>Purpose</th>
                                             <th class="text-center"></th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        @foreach ($allWithdraws as $item)
+                                            <tr class="align-middle">
+                                                <td class="text-center">
+                                                    {{ $item->withdrawID }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->ip }}
+                                                </td>
+                                                <td class="text-center">
+                                                    P{{ number_format($item->denomination, 2) }}
+                                                </td>
+                                                <td>
+                                                    P{{ number_format($item->total, 2) }}
+                                                </td>
+                                                <td class="text-center">
+                                                    P{{ number_format($item->remaining, 2) }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->purpose }}
+                                                </td>
+                                                <td class="text-center"></td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="pagination">
+                                            <ul class="pagination">
+                                                @for ($i = 1; $i <= $allWithdraws->lastPage(); $i++)
+                                                    <li class="page-item ">
+                                                        <a class="page-link {{ $allWithdraws->currentPage() == $i ? 'active text-danger' : 'text-dark' }}"
+                                                            href="{{ $allWithdraws->url($i) }}">{{ $i }}</a>
+                                                    </li>
+                                                @endfor
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

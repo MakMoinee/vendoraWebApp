@@ -25,7 +25,10 @@ class UserWithdrawals extends Controller
 
             $allMachines = DB::table('machines')->where('userID', '=', $user['userID'])->get();
 
-            return view('user.withdrawals', ['machines' => $allMachines]);
+            $allWithdraws = DB::table('withdrawals')->where('userID', '=', $user['userID'])->orderBy('created_at', 'desc')
+                ->paginate(10);
+
+            return view('user.withdrawals', ['machines' => $allMachines, 'allWithdraws' => $allWithdraws]);
         }
         return redirect("/");
     }
