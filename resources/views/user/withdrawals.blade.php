@@ -165,7 +165,8 @@
                                 <div class="fs-4 fw-semibold">
                                     <h3 id="tenData">P0.00</h3>
                                 </div>
-                                {{-- <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button> --}}
+                                <button data-bs-toggle="modal" data-bs-target="#withdrawModal"
+                                    onclick="withdraw(10);" class="btn btn-primary mt-2">Withdraw</button>
 
                             </div>
                         </div>
@@ -179,7 +180,8 @@
                                 <div class="fs-4 fw-semibold">
                                     <h3 id="fiveData">P0.00</h3>
                                 </div>
-                                {{-- <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button> --}}
+                                <button data-bs-toggle="modal" data-bs-target="#withdrawModal" onclick="withdraw(5);"
+                                    class="btn btn-primary mt-2">Withdraw</button>
 
                             </div>
                         </div>
@@ -193,7 +195,8 @@
                                 <div class="fs-4 fw-semibold">
                                     <h3 id="pesoData">P0.00</h3>
                                 </div>
-                                {{-- <button onclick="withdraw(0);" class="btn btn-primary mt-2">Withdraw</button> --}}
+                                <button data-bs-toggle="modal" data-bs-target="#withdrawModal" onclick="withdraw(1);"
+                                    class="btn btn-primary mt-2">Withdraw</button>
 
                             </div>
                         </div>
@@ -475,6 +478,41 @@
         </div>
     </div>
 
+    <div class="modal fade" id="withdrawModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="withdrawModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="withdrawModalLabel">Withdraw Money</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/user_machine" id="withdrawForm" method="post" autocomplete="off">
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group mb-2">
+                            <label for="avail" class="text-dark">Available Total :</label>
+                            <br>
+                            <input readonly style="cursor: not-allowed;" required type="number" step="any"
+                                name="avail" id="avail" class="form-control">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="withdrawAmount" class="text-dark">Amount to be withdrawn:</label>
+                            <br>
+                            <input required type="number" step="any" name="withdrawAmount" id=""
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="btnWithdraw" name="btnWithdraw"
+                            value="yes">Withdraw
+                            Money</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="logoutModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -619,15 +657,56 @@
 
     <script>
         let total = 0;
+        let totalPeso = 0;
+        let totalFive = 0;
+        let totalTen = 0;
 
         function withdraw(amount) {
-            if (amount <= 0) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'Insufficient Amount, Can\'t Withdraw',
-                    showConfirmButton: true,
-                });
+            if (amount == 1) {
+                let avail = document.getElementById('avail');
+                avail.value = `${totalPeso}.00`;
+                let btnWithdraw = document.getElementById('btnWithdraw');
+                let withdrawForm = document.getElementById('withdrawForm');
+                if (totalPeso <= 0) {
+                    btnWithdraw.removeAttribute("class");
+                    btnWithdraw.setAttribute("class", "btn btn-primary disabled");
+                    withdrawForm.removeAttribute("onsubmit");
+                    withdrawForm.setAttribute("onsubmit", "return false;");
+                } else {
+                    btnWithdraw.removeAttribute("class");
+                    btnWithdraw.setAttribute("class", "btn btn-primary");
+                    withdrawForm.removeAttribute("onsubmit");
+                }
+            } else if (amount == 5) {
+                let avail = document.getElementById('avail');
+                avail.value = `${totalFive}.00`;
+                let btnWithdraw = document.getElementById('btnWithdraw');
+                let withdrawForm = document.getElementById('withdrawForm');
+                if (totalFive <= 0) {
+                    btnWithdraw.removeAttribute("class");
+                    btnWithdraw.setAttribute("class", "btn btn-primary disabled");
+                    withdrawForm.removeAttribute("onsubmit");
+                    withdrawForm.setAttribute("onsubmit", "return false;");
+                } else {
+                    btnWithdraw.removeAttribute("class");
+                    btnWithdraw.setAttribute("class", "btn btn-primary");
+                    withdrawForm.removeAttribute("onsubmit");
+                }
+            } else if (amount == 10) {
+                let avail = document.getElementById('avail');
+                avail.value = `${totalTen}.00`;
+                let btnWithdraw = document.getElementById('btnWithdraw');
+                let withdrawForm = document.getElementById('withdrawForm');
+                if (totalTen <= 0) {
+                    btnWithdraw.removeAttribute("class");
+                    btnWithdraw.setAttribute("class", "btn btn-primary disabled")
+                    withdrawForm.removeAttribute("onsubmit");
+                    withdrawForm.setAttribute("onsubmit", "return false;");
+                } else {
+                    btnWithdraw.removeAttribute("class");
+                    btnWithdraw.setAttribute("class", "btn btn-primary");
+                    withdrawForm.removeAttribute("onsubmit");
+                }
             }
         }
         async function fetchCoinCount(ip, denom) {
@@ -661,6 +740,9 @@
 
         function refreshPeso() {
             total = 0;
+            totalPeso = 0;
+            totalFive = 0;
+            totalTen = 0;
             let selectedMachine = document.getElementById('selectedMachine');
             console.log(selectedMachine.value);
             fetchCoinCount(selectedMachine.value, 1).then((coinCount) => {
@@ -669,7 +751,7 @@
                     console.log(`Retrieved Coin Count: ${coinCount}`);
                     let pesoData = document.getElementById('pesoData');
                     pesoData.innerHTML = `P${coinCount}.00`;
-                    total += coinCount;
+                    totalPeso = coinCount;
 
                 } else {
                     console.log('Failed to retrieve Coin Count');
@@ -682,6 +764,7 @@
             refreshTen();
             setTimeout(() => {
                 let allData = document.getElementById('allData');
+                total = totalPeso + totalFive + totalTen;
                 allData.innerHTML = `P${total}.00`;
             }, 3000);
         }
@@ -695,12 +778,12 @@
                     console.log(`Retrieved Coin Count: ${coinCount}`);
                     let pesoData = document.getElementById('fiveData');
                     pesoData.innerHTML = `P${coinCount}.00`;
-                    total += coinCount;
+                    totalFive = coinCount;
                 } else {
                     console.log('Failed to retrieve Coin Count');
-                    let pesoData = document.getElementById('pesoData');
-                    pesoData.innerHTML = 'P0.00';
-                    total += 0;
+                    let fiveData = document.getElementById('fiveData');
+                    fiveData.innerHTML = 'P0.00';
+                    totalFive = 0;
                 }
             });
         }
@@ -714,14 +797,22 @@
                     console.log(`Retrieved Coin Count: ${coinCount}`);
                     let pesoData = document.getElementById('tenData');
                     pesoData.innerHTML = `P${coinCount}.00`;
-                    total += coinCount;
+                    totalTen = coinCount;
                 } else {
                     console.log('Failed to retrieve Coin Count');
                     let pesoData = document.getElementById('tenData');
                     pesoData.innerHTML = 'P0.00';
-                    total += coinCount;
+                    totalTen = 0;
                 }
             });
+        }
+
+        try {
+            setTimeout(() => {
+                refreshPeso();
+            }, 2000);
+        } catch (e) {
+
         }
     </script>
 </body>
