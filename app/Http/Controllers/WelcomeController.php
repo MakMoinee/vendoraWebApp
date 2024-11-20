@@ -26,6 +26,8 @@ class WelcomeController extends Controller
         $allUsers = count(json_decode(DB::table('users')->where('userType', '=', 'user')->get(), true));
         $allMachines = count(json_decode(DB::table('machines')->get(), true));
 
+       
+
         return view('welcome', ['allUsers' => $allUsers, 'allMachines' => $allMachines]);
     }
 

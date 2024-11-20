@@ -165,7 +165,7 @@
                         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div style="height: 120px;">
                                 <div>Total Coins Counted</div>
-                                <div class="fs-4 fw-semibold">P0.00</div>
+                                <div class="fs-4 fw-semibold">P{{ number_format($totalCoin, 2) }}</div>
 
                             </div>
                         </div>

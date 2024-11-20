@@ -33,9 +33,15 @@ class UserHomeController extends Controller
                 }
             }
 
+            $data = json_decode(DB::table('coin_count_logs')
+                ->where('userID', '=', $user['userID'])
+                ->orderBy('created_at', 'desc')
+                ->first(), true);
+
             return view('user.home', [
                 'totalSavings' => $totalSavings,
-                'totalExp' => $totalExp
+                'totalExp' => $totalExp,
+                'totalCoin' => $data > 0 ? $data : 0
             ]);
         }
         return redirect("/");
