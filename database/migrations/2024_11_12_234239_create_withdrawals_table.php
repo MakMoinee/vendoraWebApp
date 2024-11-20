@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('withdrawals', function (Blueprint $table) {
             $table->id('withdrawID')->autoIncrement();
             $table->integer('userID')->nullable(false);
-            $table->integer('machineID')->nullable(false);
+            $table->string('ip')->nullable(false);
             $table->string('denomination')->nullable(false);
             $table->string('purpose')->nullable(false);
             $table->decimal('total', 10, 2)->nullable(false);

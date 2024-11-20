@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Withdrawals;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UserWithdrawals extends Controller
 {
@@ -41,7 +43,39 @@ class UserWithdrawals extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (session()->exists('users')) {
+            $user = session()->pull('users');
+            session()->put('users', $user);
+
+            if ($user['userType'] != "user") {
+                return redirect("/");
+            }
+
+            if ($request->btnWithdraw) {
+                $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", $request->denom, $request->withdrawAmount);
+
+                if (isset($response['status']) && $response['status'] === 'success') {
+                    $newWithdraw = new Withdrawals();
+                    $newWithdraw->userID = $user['userID'];
+                    $newWithdraw->ip = $request->withdrawIP;
+                    $newWithdraw->denomination = $request->denom;
+                    $remaining = $request->withdrawAmount - $request->avail;
+                    $newWithdraw->total = $request->withdrawAmount;
+                    $newWithdraw->purpose = $request->purpose;
+                    $newWithdraw->remaining = $remaining;
+                    $isSave =  $newWithdraw->save();
+                    if ($isSave) {
+                        session()->put("succcessWithdraw", true);
+                    } else {
+                        session()->put("errorWithdraw", true);
+                    }
+                } else {
+                    session()->put("errorWithdraw", true);
+                }
+            }
+            return redirect("/withdraw");
+        }
+        return redirect("/");
     }
 
     /**
@@ -96,6 +130,37 @@ class UserWithdrawals extends Controller
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             // Handle exceptions (e.g., network issues)
             return 0;
+        }
+    }
+
+    private function withdrawCoins(string $ip, string $route, int $denom, int $amount): ?array
+    {
+        $client = new \GuzzleHttp\Client();
+
+        try {
+            // Construct the full URL
+            $url = 'http://' . $ip . $route;
+
+            // Make the GET request with query parameters
+            $response = $client->get($url, [
+                'timeout' => 5,
+                'query' => [
+                    'denom' => $denom,
+                    'amount' => $amount,
+                ],
+            ]);
+
+            // Decode the JSON response
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            // Return the full response data for further handling if needed
+            return $data;
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            // Handle exceptions (e.g., network issues)
+            return [
+                'status' => 'error',
+                'message' => 'Unable to connect to the withdraw route.',
+            ];
         }
     }
 }

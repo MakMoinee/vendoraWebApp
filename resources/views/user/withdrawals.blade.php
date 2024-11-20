@@ -486,7 +486,7 @@
                     <h1 class="modal-title fs-5" id="withdrawModalLabel">Withdraw Money</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/user_machine" id="withdrawForm" method="post" autocomplete="off">
+                <form action="/withdraw" id="withdrawForm" method="post" autocomplete="off">
                     <div class="modal-body">
                         @csrf
                         <div class="form-group mb-2">
@@ -494,6 +494,8 @@
                             <br>
                             <input readonly style="cursor: not-allowed;" required type="number" step="any"
                                 name="avail" id="avail" class="form-control">
+                            <input type="hidden" name="denom" id="denom">
+                            <input type="hidden" name="withdrawIP" id="withdrawIP">
                         </div>
                         <div class="form-group mb-2">
                             <label for="withdrawAmount" class="text-dark">Amount to be withdrawn:</label>
@@ -633,34 +635,34 @@
         {{ session()->forget('errorDeleteMachine') }}
     @endif
 
-    @if (session()->pull('successUpdateMachine'))
+    @if (session()->pull('succcessWithdraw'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Successfully Updated Machine',
+                    title: 'Successfully Withdraw From Machine',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('successUpdateMachine') }}
+        {{ session()->forget('succcessWithdraw') }}
     @endif
 
-    @if (session()->pull('errorUpdateMachine'))
+    @if (session()->pull('errorWithdraw'))
         <script>
             setTimeout(() => {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'Failed to update machine, Please try again later',
+                    title: 'Failed to withdraw from machine, Please try again later',
                     showConfirmButton: false,
                     timer: 800
                 });
             }, 500);
         </script>
-        {{ session()->forget('errorUpdateMachine') }}
+        {{ session()->forget('errorWithdraw') }}
     @endif
 
     <script>
@@ -670,6 +672,12 @@
         let totalTen = 0;
 
         function withdraw(amount) {
+            let denom = document.getElementById('denom');
+            denom.value = amount;
+            let selectedMachine = document.getElementById('selectedMachine');
+            let withdrawIP = document.getElementById('withdrawIP');
+            withdrawIP.value = selectedMachine.value;
+
             if (amount == 1) {
                 let avail = document.getElementById('avail');
                 avail.value = `${totalPeso}.00`;
