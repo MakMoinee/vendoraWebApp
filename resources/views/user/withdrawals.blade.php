@@ -266,19 +266,20 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="pagination">
-                                            <ul class="pagination">
-                                                @for ($i = 1; $i <= $allWithdraws->lastPage(); $i++)
-                                                    <li class="page-item ">
-                                                        <a class="page-link {{ $allWithdraws->currentPage() == $i ? 'active text-danger' : 'text-dark' }}"
-                                                            href="{{ $allWithdraws->url($i) }}">{{ $i }}</a>
-                                                    </li>
-                                                @endfor
-                                            </ul>
+                            </div>
 
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pagination">
+                                        <ul class="pagination">
+                                            @for ($i = 1; $i <= $allWithdraws->lastPage(); $i++)
+                                                <li class="page-item ">
+                                                    <a class="page-link {{ $allWithdraws->currentPage() == $i ? 'active text-danger' : 'text-dark' }}"
+                                                        href="{{ $allWithdraws->url($i) }}">{{ $i }}</a>
+                                                </li>
+                                            @endfor
+                                        </ul>
+
                                     </div>
                                 </div>
                             </div>
