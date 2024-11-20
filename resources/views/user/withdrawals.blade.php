@@ -501,6 +501,14 @@
                             <input required type="number" step="any" name="withdrawAmount" id=""
                                 class="form-control">
                         </div>
+                        <div class="form-group">
+                            <label for="purpose" class="text-dark">Purpose:</label>
+                            <br>
+                            <select name="purpose" id="" class="form-control bg-white">
+                                <option value="savings">Savings</option>
+                                <option value="expenses">Expenses</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
