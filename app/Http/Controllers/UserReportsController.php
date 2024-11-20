@@ -38,6 +38,7 @@ class UserReportsController extends Controller
                     'December'
                 ];
                 $withdrawals = DB::table('withdrawals')
+                    ->where('userID', '=', $user['userID'])
                     ->selectRaw('MONTH(created_at) as month, SUM(total) as total')
                     ->groupBy(DB::raw('MONTH(created_at)'))
                     ->pluck('total', 'month');
@@ -50,6 +51,7 @@ class UserReportsController extends Controller
                 $prefix = "Weekly";
                 $labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
                 $withdrawals = DB::table('withdrawals')
+                    ->where('userID', '=', $user['userID'])
                     ->selectRaw('DAYOFWEEK(created_at) as day, SUM(total) as total')
                     ->groupBy(DB::raw('DAYOFWEEK(created_at)'))
                     ->pluck('total', 'day');
