@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserHomeController extends Controller
 {
@@ -18,7 +19,24 @@ class UserHomeController extends Controller
             if ($user['userType'] != "user") {
                 return redirect("/");
             }
-            return view('user.home');
+            $query = json_decode(DB::table('withdrawals')
+                ->where('userID', '=', $user['userID'])
+                ->get(), true);
+
+            $totalSavings = 0;
+            $totalExp = 0;
+            foreach ($query as $q) {
+                if ($q['purpose'] == 'savings') {
+                    $totalSavings += $q['total'];
+                } else {
+                    $totalExp += $q['total'];
+                }
+            }
+
+            return view('user.home', [
+                'totalSavings' => $totalSavings,
+                'totalExp' => $totalExp
+            ]);
         }
         return redirect("/");
     }
