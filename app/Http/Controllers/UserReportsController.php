@@ -23,7 +23,20 @@ class UserReportsController extends Controller
             $prefix = "";
             if ($reportType == 'monthly') {
                 $prefix = "Monthly";
-                $labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+                $labels = [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                    'July',
+                    'August',
+                    'September',
+                    'October',
+                    'November',
+                    'December'
+                ];
                 $withdrawals = DB::table('withdrawals')
                     ->selectRaw('MONTH(created_at) as month, SUM(total) as total')
                     ->groupBy(DB::raw('MONTH(created_at)'))
