@@ -33,6 +33,9 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <style>
         .navbar-dark .navbar-brand h1 {
             color: #06A3DA !important;
@@ -180,8 +183,12 @@
                 <div class="col-lg-12">
                     <div class="card mb-4 text-dark bg-white">
 
-                        <div class="card-header">
+                        <div class="card-header d-flex">
                             <h5>{{ $prefix }} Sales Graph</h5>
+                            <br>
+                            <button style="margin-left: 20px;" class="btn btn-success" onclick="generatePDF()">
+                                Export
+                            </button>
                         </div>
                         <div class="card-body">
                             <div class="container">
@@ -203,8 +210,8 @@
 
 
 
-      <!-- Footer Start -->
-      <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-4 col-md-6 footer-about">
@@ -607,6 +614,23 @@
                 }
             }
         });
+
+        function generatePDF() {
+            const canvas = document.getElementById('myChart');
+            const pdf = new jspdf.jsPDF();
+
+            // Convert the canvas to an image and add to the PDF
+            html2canvas(canvas).then((canvasImage) => {
+                const imgData = canvasImage.toDataURL('image/png');
+                const imgWidth = 190; // Scale width to fit A4
+                const pageHeight = 297; // A4 height in mm
+                const imgHeight = (canvasImage.height * imgWidth) / canvasImage.width;
+                const position = 10;
+
+                pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                pdf.save('SalesGraph.pdf');
+            });
+        }
     </script>
 </body>
 

@@ -137,8 +137,8 @@
                                         <tr class="align-middle">
                                             <th class="text-center">Log ID</th>
                                             <th>Total Amount</th>
-                                            <th>Log Date</th>
-                                            <th class="text-center"></th>
+                                            <th class="text-center">Log Date</th>
+                                            <th ></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -151,11 +151,10 @@
                                                     P{{ number_format($item->totalAmount, 2) }}
                                                 </td>
 
-                                                <td>
+                                                <td class="text-center">
                                                     {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
                                                 </td>
                                                 <td></td>
-                                                <td class="text-center"></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
