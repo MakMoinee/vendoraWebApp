@@ -137,7 +137,7 @@
                                 <select name="machine" id="selectedMachine"
                                     class="form-control text-dark bg-white me-2">
                                     @foreach ($machines as $item)
-                                        <option value="{{ $item->ip }}">{{ $item->ip }}</option>
+                                        <option value="{{ $item->ip }}">{{ $item->description }}</option>
                                     @endforeach
                                 </select>
                                 <button class="btn btn-primary" onclick="refreshPeso()">Enter</button>
