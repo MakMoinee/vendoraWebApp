@@ -140,7 +140,9 @@
                                         <option value="{{ $item->ip }}">{{ $item->description }}</option>
                                     @endforeach
                                 </select>
-                                <button class="btn btn-primary" onclick="refreshPeso()">Enter</button>
+                                <button class="btn btn-primary me-2" onclick="refreshPeso()">Enter</button>
+                                <button class="btn btn-warning text-white" data-bs-target="#withdrawModal"
+                                    data-bs-toggle="modal" onclick="withdrawAll()">Withdraw All</button>
                             </div>
                         </div>
                     </div>
@@ -716,6 +718,12 @@
         let totalFive = 0;
         let totalTen = 0;
 
+        function withdrawAll() {
+            if () {
+
+            }
+        }
+
         function withdraw(amount) {
             let denom = document.getElementById('denom');
             denom.value = amount;
@@ -767,6 +775,10 @@
                     btnWithdraw.removeAttribute("class");
                     btnWithdraw.setAttribute("class", "btn btn-primary");
                     withdrawForm.removeAttribute("onsubmit");
+                }
+            } else if (amount == 20) {
+                if (totalFive > 0) {
+
                 }
             }
         }
