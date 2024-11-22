@@ -33,8 +33,6 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
         .navbar-dark .navbar-brand h1 {
@@ -351,6 +349,22 @@
                                                     <th class="text-center"></th>
                                                 </tr>
                                             </thead>
+                                            <tbody>
+                                                @foreach ($labels as $item)
+                                                    <tr class="align-middle">
+                                                        <td class="text-center">
+                                                            {{ $item }}
+                                                        </td>
+                                                        <td>
+                                                            P{{ number_format($tbl[$item], 2) }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                <tr class="align-middle">
+                                                    <td class="text-center"><b>Total:</b></td>
+                                                    <td>P{{ number_format($total, 2) }}</td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -359,7 +373,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Export</button>
+                    <button class="btn btn-primary" onclick="exportTableToPDF()">Export</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -508,6 +522,10 @@
         </script>
         {{ session()->forget('passwordNotMatch') }}
     @endif
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
 
     @if (session()->pull('errorExistUsername'))
         <script>
@@ -668,6 +686,37 @@
                 pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
                 pdf.save('SalesGraph.pdf');
             });
+        }
+        async function exportTableToPDF() {
+            const {
+                jsPDF
+            } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add a title to the PDF
+            doc.text("Vendora Report - Summary", 14, 15);
+
+            // Get table data
+            const table = document.querySelector(".table-responsive table");
+
+            // Use autoTable to parse and generate the table in PDF
+            doc.autoTable({
+                html: table, // Automatically extracts table content
+                startY: 20, // Space below the title
+                styles: {
+                    fontSize: 10,
+                    cellPadding: 5
+                }, // Custom styles
+                headStyles: {
+                    fillColor: [41, 128, 185]
+                }, // Header background color
+                margin: {
+                    top: 20
+                },
+            });
+
+            // Save the PDF
+            doc.save("table-summary.pdf");
         }
     </script>
 </body>

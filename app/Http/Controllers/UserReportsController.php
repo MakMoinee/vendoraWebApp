@@ -21,6 +21,7 @@ class UserReportsController extends Controller
             }
             $reportType = $request->query('reportType');
             $prefix = "";
+            $total = 0;
             if ($reportType == 'monthly') {
                 $prefix = "Monthly";
                 $labels = [
@@ -47,6 +48,14 @@ class UserReportsController extends Controller
                 $data = array_map(function ($month) use ($withdrawals) {
                     return $withdrawals[$month] ?? 0;
                 }, range(1, 12));
+                $tbl = array();
+                $count = 0;
+                foreach ($labels as $l) {
+
+                    $tbl[$l] = $data[$count];
+                    $total += $data[$count];
+                    $count++;
+                }
             } else {
                 $prefix = "Weekly";
                 $labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -60,11 +69,19 @@ class UserReportsController extends Controller
                 $data = array_map(function ($day) use ($withdrawals) {
                     return $withdrawals[$day] ?? 0;
                 }, range(1, 7));
+                $tbl = array();
+                $count = 0;
+                foreach ($labels as $l) {
+
+                    $tbl[$l] = $data[$count];
+                    $total += $data[$count];
+                    $count++;
+                }
             }
 
 
 
-            return view('user.reports', ['labels' => $labels, 'data' => $data, 'prefix' => $prefix]);
+            return view('user.reports', ['labels' => $labels, 'data' => $data, 'prefix' => $prefix, 'tbl' => $tbl, "total" => $total]);
         }
         return redirect("/");
     }
