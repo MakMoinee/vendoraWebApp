@@ -142,7 +142,7 @@
                                 </select>
                                 <button class="btn btn-primary me-2" onclick="refreshPeso()">Enter</button>
                                 <button class="btn btn-warning text-white" data-bs-target="#withdrawModal"
-                                    data-bs-toggle="modal" onclick="withdrawAll()">Withdraw All</button>
+                                    data-bs-toggle="modal" onclick="withdraw(20)">Withdraw All</button>
                             </div>
                         </div>
                     </div>
@@ -301,7 +301,7 @@
 
 
 
-  
+
 
 
 
@@ -445,11 +445,15 @@
                                 name="avail" id="avail" class="form-control">
                             <input type="hidden" name="denom" id="denom">
                             <input type="hidden" name="withdrawIP" id="withdrawIP">
+                            <input type="hidden" name="all" id="denomAll">
+                            <input type="hidden" name="denom1" id="denom1">
+                            <input type="hidden" name="denom5" id="denom5">
+                            <input type="hidden" name="denom10" id="denom10">
                         </div>
                         <div class="form-group mb-2">
                             <label for="withdrawAmount" class="text-dark">Amount to be withdrawn:</label>
                             <br>
-                            <input required type="number" step="any" name="withdrawAmount" id=""
+                            <input required type="number" step="any" name="withdrawAmount" id="withdrawAmount"
                                 class="form-control">
                         </div>
                         <div class="form-group">
@@ -620,12 +624,6 @@
         let totalFive = 0;
         let totalTen = 0;
 
-        function withdrawAll() {
-            if () {
-
-            }
-        }
-
         function withdraw(amount) {
             let denom = document.getElementById('denom');
             denom.value = amount;
@@ -638,6 +636,8 @@
                 avail.value = `${totalPeso}.00`;
                 let btnWithdraw = document.getElementById('btnWithdraw');
                 let withdrawForm = document.getElementById('withdrawForm');
+                let withdrawAmount = document.getElementById('withdrawAmount');
+                withdrawAmount.removeAttribute("readonly");
                 if (totalPeso <= 0) {
                     btnWithdraw.removeAttribute("class");
                     btnWithdraw.setAttribute("class", "btn btn-primary disabled");
@@ -679,11 +679,26 @@
                     withdrawForm.removeAttribute("onsubmit");
                 }
             } else if (amount == 20) {
-                if (totalFive > 0) {
+                let avail = document.getElementById('avail');
+                avail.value = `${total}.00`;
+                let btnWithdraw = document.getElementById('btnWithdraw');
+                let denomAll = document.getElementById('denomAll');
+                denomAll.value = "yes";
+                let denom1 = document.getElementById('denom1');
+                denom1.value = totalPeso;
+                let denom5 = document.getElementById('denom5');
+                denom5.value = totalFive;
+                let denom10 = document.getElementById('denom10');
+                denom10.value = totalTen;
 
-                }
+                btnWithdraw.removeAttribute("class");
+                btnWithdraw.setAttribute("class", "btn btn-primary");
+                withdrawForm.removeAttribute("onsubmit");
+                withdrawAmount.value = total;
+                withdrawAmount.setAttribute("readonly","");
             }
         }
+
         async function fetchCoinCount(ip, denom) {
             const apiUrl =
                 `http://${ip}/${denom}/count`; // Replace <IP_ADDRESS> with the actual IP address of the server.

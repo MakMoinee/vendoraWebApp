@@ -55,7 +55,80 @@ class UserWithdrawals extends Controller
                 return redirect("/");
             }
 
-            if ($request->btnWithdraw) {
+            if ($request->all) {
+                $isSuccess1 = false;
+                $isSuccess5 = false;
+                $isSuccess10 = false;
+                $denom1 = (int) $request->denom1;
+                $denom5 = (int) $request->denom5;
+                $denom10 = (int) $request->denom10;
+                if ($denom1 > 0) {
+                    $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", 1, $request->withdrawAmount);
+
+                    if (isset($response['status']) && $response['status'] === 'success') {
+                        $newWithdraw = new Withdrawals();
+                        $newWithdraw->userID = $user['userID'];
+                        $newWithdraw->ip = $request->withdrawIP;
+                        $newWithdraw->denomination = 1;
+                        $remaining = $request->avail - $request->withdrawAmount;
+                        $newWithdraw->total = $request->withdrawAmount;
+                        $newWithdraw->purpose = $request->purpose;
+                        $newWithdraw->remaining = $remaining;
+                        $isSave =  $newWithdraw->save();
+                        $isSuccess1 = true;
+                    } else {
+                        $isSuccess1 = false;
+                    }
+                }
+
+                if ($denom5 > 0) {
+                    $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", 5, $request->withdrawAmount);
+
+                    if (isset($response['status']) && $response['status'] === 'success') {
+                        $newWithdraw = new Withdrawals();
+                        $newWithdraw->userID = $user['userID'];
+                        $newWithdraw->ip = $request->withdrawIP;
+                        $newWithdraw->denomination = 5;
+                        $remaining = $request->avail - $request->withdrawAmount;
+                        $newWithdraw->total = $request->withdrawAmount;
+                        $newWithdraw->purpose = $request->purpose;
+                        $newWithdraw->remaining = $remaining;
+                        $isSave =  $newWithdraw->save();
+                        $isSuccess5 = true;
+                    } else {
+                        $isSuccess5 = false;
+                    }
+                }
+
+                if ($denom10 > 0) {
+                    $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", 10, $request->withdrawAmount);
+                    if (isset($response['status']) && $response['status'] === 'success') {
+                        $newWithdraw = new Withdrawals();
+                        $newWithdraw->userID = $user['userID'];
+                        $newWithdraw->ip = $request->withdrawIP;
+                        $newWithdraw->denomination = 10;
+                        $remaining = $request->avail - $request->withdrawAmount;
+                        $newWithdraw->total = $request->withdrawAmount;
+                        $newWithdraw->purpose = $request->purpose;
+                        $newWithdraw->remaining = $remaining;
+                        $isSave =  $newWithdraw->save();
+                        $isSuccess10 = true;
+                    } else {
+                        $isSuccess10 = false;
+                    }
+                }
+
+                if ($isSuccess1 || $isSuccess5 || $isSuccess10) {
+                    session()->put("succcessWithdraw", true);
+                } else {
+
+                    session()->put("errorWithdraw", true);
+                }
+
+
+
+                return redirect("/withdraw");
+            } else if ($request->btnWithdraw) {
                 $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", $request->denom, $request->withdrawAmount);
 
                 if (isset($response['status']) && $response['status'] === 'success') {
