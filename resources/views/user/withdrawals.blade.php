@@ -728,6 +728,7 @@
             }
         }
 
+
         function refreshPeso() {
             total = 0;
             totalPeso = 0;
@@ -837,7 +838,7 @@
         }
 
         try {
-            setTimeout(() => {
+            setInterval(() => {
                 refreshPeso();
             }, 2000);
         } catch (e) {
