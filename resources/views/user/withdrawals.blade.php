@@ -240,8 +240,7 @@
                                             <th class="text-center">Money Denomination</th>
                                             <th>Amount Withdrawn</th>
                                             <th class="text-center">Amount Remaining</th>
-                                            <th>Purpose</th>
-                                            <th class="text-center">Date</th>
+                                            <th>Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -263,9 +262,6 @@
                                                     P{{ number_format($item->remaining, 2) }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->purpose }}
-                                                </td>
-                                                <td class="text-center">
                                                     {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
                                                 </td>
                                             </tr>
@@ -449,20 +445,13 @@
                             <input type="hidden" name="denom1" id="denom1">
                             <input type="hidden" name="denom5" id="denom5">
                             <input type="hidden" name="denom10" id="denom10">
+                            <input type="hidden" name="purpose" value="savings">
                         </div>
                         <div class="form-group mb-2">
                             <label for="withdrawAmount" class="text-dark">Amount to be withdrawn:</label>
                             <br>
                             <input required type="number" step="any" name="withdrawAmount" id="withdrawAmount"
                                 class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="purpose" class="text-dark">Purpose:</label>
-                            <br>
-                            <select name="purpose" id="" class="form-control bg-white">
-                                <option value="savings">Savings</option>
-                                <option value="expenses">Expenses</option>
-                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -749,6 +738,7 @@
                     console.log('Failed to retrieve Coin Count');
                     let pesoData = document.getElementById('pesoData');
                     pesoData.innerHTML = 'P0.00';
+                    totalPeso = 0;
                 }
             });
 
