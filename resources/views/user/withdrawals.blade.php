@@ -841,7 +841,7 @@
         try {
             setInterval(() => {
                 refreshPeso();
-            }, 2000);
+            }, 5000);
         } catch (e) {
 
         }
