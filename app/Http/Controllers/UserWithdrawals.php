@@ -156,7 +156,7 @@ class UserWithdrawals extends Controller
                 $totalTenCoin = $request->totalTenCoin;
                 if ($totalPesoCoin > 0) {
                     $newLog->userID = $user['userID'];
-                    $newLog->totalAmount = $request->totalAmount;
+                    $newLog->totalAmount = $totalPesoCoin;
                     $newLog->totalPesoCoin = $totalPesoCoin;
                     $newLog->totalTenCoin = 0;
                     $newLog->totalFiveCoin = 0;
@@ -166,7 +166,7 @@ class UserWithdrawals extends Controller
                 if ($totalFiveCoin > 0) {
                     $newLog = new CoinCountLogs();
                     $newLog->userID = $user['userID'];
-                    $newLog->totalAmount = $request->totalAmount;
+                    $newLog->totalAmount = $totalFiveCoin;
                     $newLog->totalPesoCoin = 0;
                     $newLog->totalTenCoin = 0;
                     $newLog->totalFiveCoin = $totalFiveCoin / 5;
@@ -176,7 +176,7 @@ class UserWithdrawals extends Controller
                 if ($totalTenCoin > 0) {
                     $newLog = new CoinCountLogs();
                     $newLog->userID = $user['userID'];
-                    $newLog->totalAmount = $request->totalAmount;
+                    $newLog->totalAmount = $totalTenCoin;
                     $newLog->totalPesoCoin = 0;
                     $newLog->totalTenCoin = $totalTenCoin / 10;
                     $newLog->totalFiveCoin = 0;
