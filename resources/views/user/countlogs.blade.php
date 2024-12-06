@@ -136,12 +136,11 @@
                                     <thead class="table-light fw-semibold">
                                         <tr class="align-middle">
                                             <th class="text-center">Log ID</th>
-                                            <th>Total Amount</th>
-                                            <th class="text-center">Total One Peso Coin</th>
-                                            <th>Total Five Peso Coin</th>
-                                            <th class="text-center">Total Ten Peso Coin</th>
-                                            <th>Log Date</th>
-                                            <th class="text-center"></th>
+                                            <th>Amount</th>
+                                            <th class="text-center">Total Coins</th>
+                                            <th>Denomination</th>
+                                            <th class="text-center">Log Date</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -153,17 +152,33 @@
                                                 <td>
                                                     P{{ number_format($item->totalAmount, 2) }}
                                                 </td>
-                                                <td class="text-center">
-                                                    P{{ number_format($item->totalPesoCoin, 2) }}
-                                                </td>
-                                                <td>
-                                                    P{{ number_format($item->totalFiveCoin, 2) }}
-                                                </td>
-                                                <td class="text-center">
-                                                    P{{ number_format($item->totalTenCoin, 2) }}
-                                                </td>
 
-                                                <td>
+                                                @if ($item->totalPesoCoin > 0)
+                                                    <td class="text-center">
+                                                        {{ (int) ($item->totalPesoCoin / 1) }}
+                                                    </td>
+                                                    <td>
+                                                        1 Peso Coin
+                                                    </td>
+                                                @endif
+                                                @if ($item->totalFiveCoin > 0)
+                                                    <td class="text-center">
+                                                        {{ (int) ($item->totalFiveCoin / 5) }}
+                                                    </td>
+                                                    <td>
+                                                        5 Peso Coin
+                                                    </td>
+                                                @endif
+                                                @if ($item->totalTenCoin > 0)
+                                                    <td class="text-center">
+                                                        {{ (int) ($item->totalTenCoin / 10) }}
+                                                    </td>
+                                                    <td>
+                                                        10 Peso Coin
+                                                    </td>
+                                                @endif
+
+                                                <td class="text-center">
                                                     {{ (new DateTime($item->created_at))->setTimezone(new DateTimeZone('Asia/Manila'))->format('Y-m-d h:i A') }}
                                                 </td>
                                                 <td></td>
@@ -200,7 +215,7 @@
 
 
 
-  
+
 
 
 

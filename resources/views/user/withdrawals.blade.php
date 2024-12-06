@@ -679,6 +679,9 @@
                     withdrawForm.removeAttribute("onsubmit");
                 }
             } else if (amount == 20) {
+                setTimeout(() => {
+                    storeLogs();
+                }, 3000);
                 let avail = document.getElementById('avail');
                 avail.value = `${total}.00`;
                 let btnWithdraw = document.getElementById('btnWithdraw');
@@ -695,7 +698,8 @@
                 btnWithdraw.setAttribute("class", "btn btn-primary");
                 withdrawForm.removeAttribute("onsubmit");
                 withdrawAmount.value = total;
-                withdrawAmount.setAttribute("readonly","");
+                withdrawAmount.setAttribute("readonly", "");
+
             }
         }
 
@@ -757,10 +761,6 @@
                 let allData = document.getElementById('allData');
                 total = totalPeso + totalFive + totalTen;
                 allData.innerHTML = `P${total}.00`;
-            }, 3000);
-
-            setTimeout(() => {
-                storeLogs();
             }, 3000);
         }
 

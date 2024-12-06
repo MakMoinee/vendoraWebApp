@@ -20,8 +20,22 @@ class UserReportsController extends Controller
                 return redirect("/");
             }
             $reportType = $request->query('reportType');
+            $startDate = $request->query('start');
+            $endDate = $request->query('ends');
+
+            // Check if start_date and end_date are set, otherwise use default date range
+            if ($startDate && $endDate) {
+                $startDate = date('Y-m-d 00:00:00', strtotime($startDate)); // Start of the day
+                $endDate = date('Y-m-d 23:59:59', strtotime($endDate)); // End of the day
+            } else {
+                // If no dates are provided, default to the current month
+                $startDate = date('Y-m-01 00:00:00'); // First day of the current month
+                $endDate = date('Y-m-t 23:59:59'); // Last day of the current month
+            }
+
             $prefix = "";
             $total = 0;
+
             if ($reportType == 'monthly') {
                 $prefix = "Monthly";
                 $labels = [
@@ -38,8 +52,11 @@ class UserReportsController extends Controller
                     'November',
                     'December'
                 ];
+
+                // Modify the query to filter based on the start and end dates
                 $withdrawals = DB::table('withdrawals')
                     ->where('userID', '=', $user['userID'])
+                    ->whereBetween('created_at', [$startDate, $endDate]) // Filter by date range
                     ->selectRaw('MONTH(created_at) as month, SUM(total) as total')
                     ->groupBy(DB::raw('MONTH(created_at)'))
                     ->pluck('total', 'month');
@@ -48,10 +65,10 @@ class UserReportsController extends Controller
                 $data = array_map(function ($month) use ($withdrawals) {
                     return $withdrawals[$month] ?? 0;
                 }, range(1, 12));
-                $tbl = array();
+
+                $tbl = [];
                 $count = 0;
                 foreach ($labels as $l) {
-
                     $tbl[$l] = $data[$count];
                     $total += $data[$count];
                     $count++;
@@ -59,8 +76,11 @@ class UserReportsController extends Controller
             } else {
                 $prefix = "Weekly";
                 $labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+                // Modify the query to filter based on the start and end dates
                 $withdrawals = DB::table('withdrawals')
                     ->where('userID', '=', $user['userID'])
+                    ->whereBetween('created_at', [$startDate, $endDate]) // Filter by date range
                     ->selectRaw('DAYOFWEEK(created_at) as day, SUM(total) as total')
                     ->groupBy(DB::raw('DAYOFWEEK(created_at)'))
                     ->pluck('total', 'day');
@@ -69,17 +89,15 @@ class UserReportsController extends Controller
                 $data = array_map(function ($day) use ($withdrawals) {
                     return $withdrawals[$day] ?? 0;
                 }, range(1, 7));
-                $tbl = array();
+
+                $tbl = [];
                 $count = 0;
                 foreach ($labels as $l) {
-
                     $tbl[$l] = $data[$count];
                     $total += $data[$count];
                     $count++;
                 }
             }
-
-
 
             return view('user.reports', ['labels' => $labels, 'data' => $data, 'prefix' => $prefix, 'tbl' => $tbl, "total" => $total]);
         }
