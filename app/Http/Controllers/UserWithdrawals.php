@@ -151,12 +151,38 @@ class UserWithdrawals extends Controller
                 }
             } else if ($request->btnStoreLogs) {
                 $newLog = new CoinCountLogs();
-                $newLog->userID = $user['userID'];
-                $newLog->totalAmount = $request->totalAmount;
-                $newLog->totalTenCoin = $request->totalTenCoin;
-                $newLog->totalFiveCoin = $request->totalFiveCoin;
-                $newLog->totalPesoCoin = $request->totalPesoCoin;
-                $newLog->save();
+                $totalPesoCoin = $request->totalPesoCoin;
+                $totalFiveCoin = $request->totalFiveCoin;
+                $totalTenCoin = $request->totalTenCoin;
+                if ($totalPesoCoin > 0) {
+                    $newLog->userID = $user['userID'];
+                    $newLog->totalAmount = $request->totalAmount;
+                    $newLog->totalPesoCoin = $totalPesoCoin;
+                    $newLog->totalTenCoin = 0;
+                    $newLog->totalFiveCoin = 0;
+                    $newLog->save();
+                }
+
+                if ($totalFiveCoin > 0) {
+                    $newLog = new CoinCountLogs();
+                    $newLog->userID = $user['userID'];
+                    $newLog->totalAmount = $request->totalAmount;
+                    $newLog->totalPesoCoin = 0;
+                    $newLog->totalTenCoin = 0;
+                    $newLog->totalFiveCoin = $totalFiveCoin / 5;
+                    $newLog->save();
+                }
+
+                if ($totalTenCoin > 0) {
+                    $newLog = new CoinCountLogs();
+                    $newLog->userID = $user['userID'];
+                    $newLog->totalAmount = $request->totalAmount;
+                    $newLog->totalPesoCoin = 0;
+                    $newLog->totalTenCoin = $totalTenCoin / 10;
+                    $newLog->totalFiveCoin = 0;
+                    $newLog->save();
+                }
+
                 return response()->json(["success" => true], 200);
             }
             return redirect("/withdraw");

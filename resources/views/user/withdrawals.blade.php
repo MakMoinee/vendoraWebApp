@@ -679,9 +679,6 @@
                     withdrawForm.removeAttribute("onsubmit");
                 }
             } else if (amount == 20) {
-                setTimeout(() => {
-                    storeLogs();
-                }, 3000);
                 let avail = document.getElementById('avail');
                 avail.value = `${total}.00`;
                 let btnWithdraw = document.getElementById('btnWithdraw');
@@ -762,6 +759,10 @@
                 total = totalPeso + totalFive + totalTen;
                 allData.innerHTML = `P${total}.00`;
             }, 3000);
+
+            setTimeout(() => {
+                storeLogs();
+            }, 5000);
         }
 
         function refreshFive() {
