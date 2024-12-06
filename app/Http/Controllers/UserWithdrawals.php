@@ -155,7 +155,7 @@ class UserWithdrawals extends Controller
                 $totalFiveCoin = $request->totalFiveCoin;
                 $totalTenCoin = $request->totalTenCoin;
                 $newLog->userID = $user['userID'];
-                $newLog->totalAmount = $totalPesoCoin;
+                $newLog->totalAmount = $request->totalAmount;
                 $newLog->totalPesoCoin = $totalPesoCoin;
                 $newLog->totalTenCoin = $totalFiveCoin;
                 $newLog->totalFiveCoin = $totalTenCoin;
