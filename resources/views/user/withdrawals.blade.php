@@ -101,7 +101,7 @@
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/user_home" class="nav-item nav-link ">Home</a>
                     <a href="/user_machine" class="nav-item nav-link ">Machines</a>
-                    <a href="/savings" class="nav-item nav-link ">Savings</a>
+                    {{-- <a href="/savings" class="nav-item nav-link">Savings</a> --}}
                     <a href="/withdraw" class="nav-item nav-link active">Withdrawals</a>
                     <a href="/reports" class="nav-item nav-link">Reports</a>
                     <a href="/logs" class="nav-item nav-link">Coin Counter Logs</a>
