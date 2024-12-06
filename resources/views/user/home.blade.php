@@ -142,28 +142,6 @@
                     <div class="card mb-4 text-dark bg-white">
                         <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div style="height: 120px;">
-                                <div>Total Expenses</div>
-                                <div class="fs-4 fw-semibold">P{{ number_format($totalExp, 2) }}</div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="card mb-4 text-dark bg-white">
-                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                            <div style="height: 120px;">
-                                <div>Total Savings</div>
-                                <div class="fs-4 fw-semibold">P{{ number_format($totalSavings, 2) }}</div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <div class="card mb-4 text-dark bg-white">
-                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                            <div style="height: 120px;">
                                 <div>Total Coins Counted</div>
                                 <div class="fs-4 fw-semibold">P{{ number_format($totalCoin, 2) }}</div>
 
