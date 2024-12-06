@@ -762,7 +762,7 @@
 
             setTimeout(() => {
                 storeLogs();
-            }, 5000);
+            }, 8000);
         }
 
         function refreshFive() {

@@ -71,7 +71,7 @@ class UserWithdrawals extends Controller
                         $newWithdraw->ip = $request->withdrawIP;
                         $newWithdraw->denomination = 1;
                         $remaining = $request->avail - $denom1;
-                        $newWithdraw->total = $request->withdrawAmount;
+                        $newWithdraw->total = $denom1;
                         $newWithdraw->purpose = $request->purpose;
                         $newWithdraw->remaining = $remaining;
                         $isSave =  $newWithdraw->save();
@@ -90,7 +90,7 @@ class UserWithdrawals extends Controller
                         $newWithdraw->ip = $request->withdrawIP;
                         $newWithdraw->denomination = 5;
                         $remaining = $request->avail - $denom5;
-                        $newWithdraw->total = $request->withdrawAmount;
+                        $newWithdraw->total = $denom5;
                         $newWithdraw->purpose = $request->purpose;
                         $newWithdraw->remaining = $remaining;
                         $isSave =  $newWithdraw->save();
