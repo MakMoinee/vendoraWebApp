@@ -76,7 +76,7 @@ class UserReportsController extends Controller
             } else {
                 $prefix = "Weekly";
                 $labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
+            
                 // Modify the query to filter based on the start and end dates
                 $withdrawals = DB::table('withdrawals')
                     ->where('userID', '=', $user['userID'])
@@ -84,12 +84,14 @@ class UserReportsController extends Controller
                     ->selectRaw('DAYOFWEEK(created_at) as day, SUM(total) as total')
                     ->groupBy(DB::raw('DAYOFWEEK(created_at)'))
                     ->pluck('total', 'day');
-
-                // Populate data for each day (default to 0 if no data)
-                $data = array_map(function ($day) use ($withdrawals) {
-                    return $withdrawals[$day] ?? 0;
-                }, range(1, 7));
-
+            
+                // Re-map the data to start from Monday
+                $data = [];
+                for ($i = 2; $i <= 7; $i++) { // Map Monday to Saturday
+                    $data[] = $withdrawals[$i] ?? 0;
+                }
+                $data[] = $withdrawals[1] ?? 0; // Map Sunday
+            
                 $tbl = [];
                 $count = 0;
                 foreach ($labels as $l) {
