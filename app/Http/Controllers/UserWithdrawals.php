@@ -63,14 +63,14 @@ class UserWithdrawals extends Controller
                 $denom5 = (int) $request->denom5;
                 $denom10 = (int) $request->denom10;
                 if ($denom1 > 0) {
-                    $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", 1, $request->withdrawAmount);
+                    $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", 1, $denom1);
 
                     if (isset($response['status']) && $response['status'] === 'success') {
                         $newWithdraw = new Withdrawals();
                         $newWithdraw->userID = $user['userID'];
                         $newWithdraw->ip = $request->withdrawIP;
                         $newWithdraw->denomination = 1;
-                        $remaining = $request->avail - $request->withdrawAmount;
+                        $remaining = $request->avail - $denom1;
                         $newWithdraw->total = $request->withdrawAmount;
                         $newWithdraw->purpose = $request->purpose;
                         $newWithdraw->remaining = $remaining;
@@ -82,14 +82,14 @@ class UserWithdrawals extends Controller
                 }
 
                 if ($denom5 > 0) {
-                    $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", 5, $request->withdrawAmount);
+                    $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", 5, $denom5);
 
                     if (isset($response['status']) && $response['status'] === 'success') {
                         $newWithdraw = new Withdrawals();
                         $newWithdraw->userID = $user['userID'];
                         $newWithdraw->ip = $request->withdrawIP;
                         $newWithdraw->denomination = 5;
-                        $remaining = $request->avail - $request->withdrawAmount;
+                        $remaining = $request->avail - $denom5;
                         $newWithdraw->total = $request->withdrawAmount;
                         $newWithdraw->purpose = $request->purpose;
                         $newWithdraw->remaining = $remaining;
@@ -101,14 +101,14 @@ class UserWithdrawals extends Controller
                 }
 
                 if ($denom10 > 0) {
-                    $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", 10, $request->withdrawAmount);
+                    $response = $this->withdrawCoins($request->withdrawIP, "/withdraw", 10, $denom10);
                     if (isset($response['status']) && $response['status'] === 'success') {
                         $newWithdraw = new Withdrawals();
                         $newWithdraw->userID = $user['userID'];
                         $newWithdraw->ip = $request->withdrawIP;
                         $newWithdraw->denomination = 10;
-                        $remaining = $request->avail - $request->withdrawAmount;
-                        $newWithdraw->total = $request->withdrawAmount;
+                        $remaining = $request->avail - $denom10;
+                        $newWithdraw->total = $denom10;
                         $newWithdraw->purpose = $request->purpose;
                         $newWithdraw->remaining = $remaining;
                         $isSave =  $newWithdraw->save();
