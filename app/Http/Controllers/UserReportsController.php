@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -76,24 +78,34 @@ class UserReportsController extends Controller
             } else {
                 $prefix = "Weekly";
                 $labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-            
-                // Modify the query to filter based on the start and end dates
+
+                // Adjust the start and end dates to UTC using PHP's DateTime and DateTimeZone
+                $startDateObj = new DateTime($startDate, new DateTimeZone('Asia/Manila'));
+                $startDateObj->setTimezone(new DateTimeZone('UTC'));
+                $startDateUTC = $startDateObj->format('Y-m-d H:i:s');
+
+                $endDateObj = new DateTime($endDate, new DateTimeZone('Asia/Manila'));
+                $endDateObj->setTimezone(new DateTimeZone('UTC'));
+                $endDateUTC = $endDateObj->format('Y-m-d H:i:s');
+
+                // Fetch withdrawals and adjust the query for timezone conversion
                 $withdrawals = DB::table('withdrawals')
                     ->where('userID', '=', $user['userID'])
-                    ->whereBetween('created_at', [$startDate, $endDate]) // Filter by date range
-                    ->selectRaw('DAYOFWEEK(created_at) as day, SUM(total) as total')
-                    ->groupBy(DB::raw('DAYOFWEEK(created_at)'))
+                    ->whereBetween('created_at', [$startDateUTC, $endDateUTC])
+                    ->selectRaw('DAYOFWEEK(CONVERT_TZ(created_at, "+00:00", "+08:00")) as day, SUM(total) as total')
+                    ->groupBy(DB::raw('DAYOFWEEK(CONVERT_TZ(created_at, "+00:00", "+08:00"))'))
                     ->pluck('total', 'day');
-            
+
                 // Re-map the data to start from Monday
                 $data = [];
                 for ($i = 2; $i <= 7; $i++) { // Map Monday to Saturday
                     $data[] = $withdrawals[$i] ?? 0;
                 }
                 $data[] = $withdrawals[1] ?? 0; // Map Sunday
-            
+
                 $tbl = [];
                 $count = 0;
+                $total = 0; // Initialize $total
                 foreach ($labels as $l) {
                     $tbl[$l] = $data[$count];
                     $total += $data[$count];
